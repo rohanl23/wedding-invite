@@ -2,45 +2,37 @@ gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
 
-// MOBILE: skip video
-if (window.innerWidth < 768) {
-  video.style.display = "none";
-  showGanesh();
-} else {
+// FORCE VIDEO PLAY
+video.play().catch(() => {
+  console.log("Autoplay blocked");
+});
 
-  video.onended = () => {
-    gsap.to("#introVideo", {
-      opacity: 0,
-      duration: 1
-    });
+// SEAMLESS TRANSITION
+video.addEventListener("ended", () => {
 
-    showGanesh();
-  };
+  gsap.to("#introVideo", {
+    opacity: 0,
+    scale: 1.05,
+    duration: 1.2,
+    ease: "power2.out"
+  });
 
-  // fallback if video fails
-  setTimeout(() => {
-    if (video.paused) {
-      gsap.to("#introVideo", { opacity: 0, duration: 1 });
-      showGanesh();
-    }
-  }, 2500);
-}
-
-function showGanesh() {
   gsap.to(".ganesh-section", {
     opacity: 1,
-    duration: 1
+    duration: 1.2,
+    delay: 0.3
   });
 
   gsap.to(".shloka span", {
     opacity: 1,
     y: 0,
     stagger: 0.4,
-    delay: 0.5
+    delay: 1
   });
-}
 
-// SCROLL EFFECT
+});
+
+// SCROLL TRANSITION
 gsap.to(".panel", {
   yPercent: -100,
   ease: "none",
