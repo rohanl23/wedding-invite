@@ -6,7 +6,7 @@ let introDone = false;
 
 video.addEventListener("loadedmetadata", () => {
 
-  const triggerTime = video.duration - 1; // 🔥 START EARLIER
+  const triggerTime = video.duration - 3; // 🔥 MUCH EARLIER START
 
   const interval = setInterval(() => {
 
@@ -22,39 +22,39 @@ video.addEventListener("loadedmetadata", () => {
 
 function playIntroAnimation() {
 
-  // overlay
+  // overlay fade
   gsap.to(".overlay", {
     opacity: 1,
-    duration: 1.2
+    duration: 1.5
   });
 
-  // ganesh
+  // ganesh fade
   gsap.to(".ganesh", {
     opacity: 1,
-    duration: 1.5,
-    delay: 0.3
+    duration: 1.8,
+    delay: 0.4
   });
 
-  // 🔥 SLOWER MAGICAL REVEAL
+  // 🔥 VERY SLOW, MAGICAL TEXT
   gsap.to(".line span", {
     clipPath: "inset(0 0% 0 0)",
     opacity: 1,
-    stagger: 0.6,        // slower gap between lines
-    duration: 1.6,       // slower reveal
-    ease: "power2.out",
-    delay: 0.6
+    stagger: 0.8,        // slower gap between lines
+    duration: 2.2,       // slower reveal
+    ease: "power1.out",  // softer motion
+    delay: 0.8
   });
 
-  // unlock scroll AFTER full animation
+  // unlock scroll after full animation
   setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
-  }, 3500); // increased delay
+  }, 5000); // longer lock for cinematic feel
 
 }
 
 
-// scroll (same)
+// scroll (unchanged)
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
