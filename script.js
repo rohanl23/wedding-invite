@@ -59,28 +59,28 @@ function playIntroAnimation() {
 }
 
 
-// 🔥 PETALS (CONTROLLED FALL)
+// 🌼 PETALS FIXED (START ABOVE SCREEN)
 function startPetals() {
 
   const container = document.querySelector(".petals");
 
-  for (let i = 0; i < 20; i++) { // reduced count
+  for (let i = 0; i < 15; i++) {
 
     const petal = document.createElement("div");
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "-10%";
+    petal.style.top = "-20vh"; // 🔥 FIXED START
 
     container.appendChild(petal);
 
     gsap.to(petal, {
-      y: "110vh",
-      x: "random(-50,50)",
-      duration: "random(6,10)",
+      y: "120vh",
+      x: "random(-40,40)",
+      duration: "random(8,12)",
       repeat: -1,
       ease: "none",
-      delay: Math.random() * 5
+      delay: Math.random() * 6
     });
 
   }
@@ -88,20 +88,22 @@ function startPetals() {
 }
 
 
-// 🔥 HALDI TITLE ANIMATION
-gsap.to(".haldi-title span", {
-  clipPath: "inset(0 0% 0 0)",
-  opacity: 1,
-  duration: 2,
-  ease: "power2.out",
-  scrollTrigger: {
-    trigger: ".haldi",
-    start: "top 60%",
-  }
+// ✨ TITLES ANIMATION (SLOW + ROYAL)
+gsap.utils.toArray(".title span").forEach(el => {
+  gsap.to(el, {
+    clipPath: "inset(0 0% 0 0)",
+    opacity: 1,
+    duration: 3, // 🔥 slower
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: el,
+      start: "top 70%"
+    }
+  });
 });
 
 
-// PINNED SCROLL
+// PIN SCROLL
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");

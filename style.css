@@ -45,15 +45,13 @@ body {
   font-size: 1.6rem;
 }
 
-/* 🔥 SCROLL (slightly higher) */
+/* SCROLL */
 .scroll-indicator {
   position: absolute;
-  bottom: 80px;
+  bottom: 90px;
   width: 100%;
   text-align: center;
   color: #5a2e12;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
   opacity: 0;
 }
 
@@ -79,23 +77,27 @@ body {
 .wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
 .thankyou { background: url('./assets/thankyou.jpg') center/cover no-repeat; }
 
-/* 🔥 HALDI TITLE */
-.haldi-title {
+/* 🔥 TITLES */
+.title {
   position: absolute;
-  top: 8%;
+  top: 33%;
   width: 100%;
   text-align: center;
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
-  color: #fff;
   z-index: 2;
 }
 
-.haldi-title span {
+.title span {
   display: inline-block;
   opacity: 0;
   clip-path: inset(0 100% 0 0);
 }
+
+/* COLORS */
+.haldi-title { color: #000; }
+.ring-title { color: #fff; }
+.wedding-title { color: #fff; }
 
 /* 🔥 PETALS */
 .petals {
@@ -106,8 +108,8 @@ body {
 
 .petal {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: rgba(255, 204, 0, 0.8);
   border-radius: 50%;
 }
