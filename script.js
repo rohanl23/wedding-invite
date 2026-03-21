@@ -6,7 +6,7 @@ let introDone = false;
 
 video.addEventListener("loadedmetadata", () => {
 
-  const triggerTime = video.duration - 3; // 🔥 MUCH EARLIER START
+  const triggerTime = video.duration - 5; // 🔥 MUCH EARLIER START
 
   const interval = setInterval(() => {
 
