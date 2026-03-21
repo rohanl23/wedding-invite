@@ -2,6 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
 let introDone = false;
+let petalsStarted = false;
 
 
 // INTRO
@@ -54,13 +55,15 @@ function playIntroAnimation() {
   setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
-    startPetals();
   }, 5000);
 }
 
 
-// 🌼 PETALS FIXED (START ABOVE SCREEN)
+// 🌼 PETALS ONLY WHEN HALDI IS ACTIVE
 function startPetals() {
+
+  if (petalsStarted) return;
+  petalsStarted = true;
 
   const container = document.querySelector(".petals");
 
@@ -70,17 +73,17 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "-20vh"; // 🔥 FIXED START
+    petal.style.top = "-10vh";
 
     container.appendChild(petal);
 
     gsap.to(petal, {
-      y: "120vh",
+      y: "110vh",
       x: "random(-40,40)",
       duration: "random(8,12)",
       repeat: -1,
       ease: "none",
-      delay: Math.random() * 6
+      delay: Math.random() * 5
     });
 
   }
@@ -88,12 +91,20 @@ function startPetals() {
 }
 
 
-// ✨ TITLES ANIMATION (SLOW + ROYAL)
+// 🔥 TRIGGER PETALS AT HALDI ONLY
+ScrollTrigger.create({
+  trigger: ".haldi",
+  start: "top 80%",
+  onEnter: startPetals
+});
+
+
+// ✨ TITLE ANIMATION
 gsap.utils.toArray(".title span").forEach(el => {
   gsap.to(el, {
     clipPath: "inset(0 0% 0 0)",
     opacity: 1,
-    duration: 3, // 🔥 slower
+    duration: 3,
     ease: "power2.out",
     scrollTrigger: {
       trigger: el,

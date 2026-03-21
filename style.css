@@ -80,11 +80,12 @@ body {
 /* 🔥 TITLES */
 .title {
   position: absolute;
-  top: 33%;
+  top: 25%; /* moved up */
   width: 100%;
   text-align: center;
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
+  letter-spacing: 2px; /* 🔥 added spacing */
   z-index: 2;
 }
 
@@ -99,7 +100,7 @@ body {
 .ring-title { color: #fff; }
 .wedding-title { color: #fff; }
 
-/* 🔥 PETALS */
+/* PETALS */
 .petals {
   position: absolute;
   inset: 0;
