@@ -5,24 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wedding Invite</title>
 
-<link rel="stylesheet" href="style.css?v=final1">
+<link rel="stylesheet" href="style.css?v=final3">
 
-<!-- GSAP -->
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
 
-<!-- Lottie -->
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-<!-- FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Yatra+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
 <section class="video-section">
-
   <video id="introVideo" muted playsinline preload="auto">
     <source src="assets/intro.mp4" type="video/mp4">
   </video>
@@ -37,15 +33,15 @@
       <span>सर्वकार्येषु सर्वदा</span>
     </div>
   </div>
-
 </section>
 
-<!-- EVENTS -->
 <section class="panel haldi">
   <div class="content">
     <h2>Haldi</h2>
     <p>8 May • 4 PM</p>
   </div>
+
+  <lottie-player src="assets/flower.json" loop autoplay></lottie-player>
 </section>
 
 <section class="panel ring">
@@ -53,6 +49,8 @@
     <h2>Ring Ceremony</h2>
     <p>9 May • 7 PM</p>
   </div>
+
+  <lottie-player src="assets/sparkles.json" loop autoplay></lottie-player>
 </section>
 
 <section class="panel wedding">
@@ -60,6 +58,8 @@
     <h2>Wedding</h2>
     <p>10 May</p>
   </div>
+
+  <lottie-player src="assets/confetti.json" loop autoplay></lottie-player>
 </section>
 
 <section class="panel thankyou">
@@ -69,7 +69,7 @@
   </div>
 </section>
 
-<script src="script.js?v=final1"></script>
+<script src="script.js?v=final3"></script>
 
 </body>
 </html>
