@@ -1,41 +1,46 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// 🔥 ALWAYS SHOW GANESH AFTER 3 SEC (NO DEPENDENCY ON VIDEO)
+const overlay = document.querySelector(".overlay");
+
+// 🔥 SIMPLE + RELIABLE (NO VIDEO DEPENDENCY)
 setTimeout(() => {
 
-  gsap.to(".overlay", {
+  // SHOW GANESH
+  gsap.to(overlay, {
     opacity: 1,
     duration: 1.5
   });
 
-  gsap.to(".shloka span", {
-    opacity: 1,
-    y: 0,
-    stagger: 0.5,
+  gsap.from(".shloka span", {
+    opacity: 0,
+    y: 20,
+    stagger: 0.4,
     delay: 0.5
   });
 
+  // ENABLE SCROLL
   document.body.style.overflow = "auto";
 
   initScroll();
 
-}, 3000);
+}, 2500);
 
-// 🔥 SCROLL FIX (NO BLACK SCREEN)
+
+// 🔥 CLEAN SCROLL (NO BLACK SCREEN)
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
 
-  gsap.to(panels, {
-    yPercent: -100 * (panels.length - 1),
-    ease: "none",
-    scrollTrigger: {
-      trigger: panels[0],
+  panels.forEach((panel, i) => {
+
+    ScrollTrigger.create({
+      trigger: panel,
       start: "top top",
-      end: () => "+=" + window.innerHeight * (panels.length - 1),
-      scrub: 1,
-      pin: true
-    }
+      pin: true,
+      pinSpacing: false,
+      end: "+=100%"
+    });
+
   });
 
 }
