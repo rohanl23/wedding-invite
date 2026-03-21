@@ -2,36 +2,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
 
-// TRY PLAY VIDEO
-video.play().then(() => {
-  console.log("Video playing");
-}).catch(() => {
-  console.log("Autoplay blocked");
+// Try autoplay
+video.play().catch(() => {
   showGanesh(); // fallback
 });
 
-// IF VIDEO ENDS
+// When video ends
 video.addEventListener("ended", () => {
   showGanesh();
 });
 
-// FALLBACK (if video stuck)
+// Fallback if video fails
 setTimeout(() => {
   if (video.currentTime === 0) {
     showGanesh();
   }
 }, 2000);
 
-// MAIN FUNCTION
 function showGanesh() {
 
-  // show overlay
+  // Show overlay
   gsap.to(".overlay", {
     opacity: 1,
     duration: 1.5
   });
 
-  // animate text
+  // Animate shloka
   gsap.to(".shloka span", {
     opacity: 1,
     y: 0,
@@ -39,13 +35,12 @@ function showGanesh() {
     delay: 0.5
   });
 
-  // unlock scroll
+  // Enable scroll
   document.body.style.overflow = "auto";
 
   initScroll();
 }
 
-// SCROLL EFFECT
 function initScroll() {
 
   gsap.to(".panel", {
