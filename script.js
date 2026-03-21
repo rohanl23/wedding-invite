@@ -1,9 +1,9 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
-
 let introDone = false;
 
+// 🎬 INTRO TIMING
 video.addEventListener("timeupdate", () => {
 
   if (!video.duration) return;
@@ -46,6 +46,7 @@ function playIntroAnimation() {
 }
 
 
+// 🔥 CLEAN CINEMATIC FLOW (NO MORPH FEEL)
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
@@ -54,33 +55,31 @@ function initScroll() {
 
     if (i === 0) return;
 
+    // next fades in
     gsap.fromTo(panel,
+      { opacity: 0 },
       {
-        y: 100,
-        scale: 1.1,
-        opacity: 0
-      },
-      {
-        y: 0,
-        scale: 1,
         opacity: 1,
+        ease: "none",
         scrollTrigger: {
           trigger: panel,
-          start: "top 90%",
-          end: "top 30%",
-          scrub: 1
+          start: "top 85%",
+          end: "top 40%",
+          scrub: true
         }
       }
     );
 
+    // current gently moves up
     gsap.to(panels[i - 1], {
-      scale: 0.95,
-      opacity: 0.6,
+      y: -60,
+      opacity: 0.75,
+      ease: "none",
       scrollTrigger: {
         trigger: panel,
-        start: "top 90%",
-        end: "top 30%",
-        scrub: 1
+        start: "top 85%",
+        end: "top 40%",
+        scrub: true
       }
     });
 
