@@ -2,29 +2,30 @@ gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
 
-// ✅ MOBILE DETECTION
+// MOBILE: skip video
 if (window.innerWidth < 768) {
   video.style.display = "none";
-
   showGanesh();
 } else {
 
-  // VIDEO ENDS → SHOW GANESH
   video.onended = () => {
-    gsap.to("#introVideo", { opacity: 0, duration: 1 });
+    gsap.to("#introVideo", {
+      opacity: 0,
+      duration: 1
+    });
+
     showGanesh();
   };
 
-  // FALLBACK (if video fails)
+  // fallback if video fails
   setTimeout(() => {
     if (video.paused) {
       gsap.to("#introVideo", { opacity: 0, duration: 1 });
       showGanesh();
     }
-  }, 2000);
+  }, 2500);
 }
 
-// FUNCTION
 function showGanesh() {
   gsap.to(".ganesh-section", {
     opacity: 1,
