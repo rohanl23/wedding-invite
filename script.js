@@ -4,10 +4,9 @@ const video = document.getElementById("introVideo");
 
 let introDone = false;
 
-// WAIT FOR VIDEO METADATA
 video.addEventListener("loadedmetadata", () => {
 
-  const triggerTime = video.duration - 1.5;
+  const triggerTime = video.duration - 1; // 🔥 START EARLIER
 
   const interval = setInterval(() => {
 
@@ -23,38 +22,39 @@ video.addEventListener("loadedmetadata", () => {
 
 function playIntroAnimation() {
 
-  // show overlay
+  // overlay
   gsap.to(".overlay", {
     opacity: 1,
-    duration: 1
+    duration: 1.2
   });
 
-  // ganesh fade
+  // ganesh
   gsap.to(".ganesh", {
     opacity: 1,
-    duration: 1,
-    delay: 0.2
+    duration: 1.5,
+    delay: 0.3
   });
 
-  // magical reveal
+  // 🔥 SLOWER MAGICAL REVEAL
   gsap.to(".line span", {
     clipPath: "inset(0 0% 0 0)",
     opacity: 1,
-    stagger: 0.4,
-    duration: 1.2,
+    stagger: 0.6,        // slower gap between lines
+    duration: 1.6,       // slower reveal
     ease: "power2.out",
-    delay: 0.4
+    delay: 0.6
   });
 
-  // unlock scroll AFTER animation
+  // unlock scroll AFTER full animation
   setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
-  }, 2500);
+  }, 3500); // increased delay
+
 }
 
 
-// 🔥 CLEAN TRANSITIONS
+// scroll (same)
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
@@ -64,10 +64,7 @@ function initScroll() {
     if (i === 0) return;
 
     gsap.fromTo(panel,
-      {
-        opacity: 0,
-        scale: 1.05
-      },
+      { opacity: 0, scale: 1.05 },
       {
         opacity: 1,
         scale: 1,
