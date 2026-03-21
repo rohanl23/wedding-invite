@@ -7,7 +7,7 @@ video.play().catch(() => {
   console.log("Autoplay blocked");
 });
 
-// SEAMLESS TRANSITION
+// TRANSITION AFTER VIDEO
 video.addEventListener("ended", () => {
 
   gsap.to("#introVideo", {
