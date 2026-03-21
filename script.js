@@ -4,53 +4,50 @@ const video = document.getElementById("introVideo");
 
 let introDone = false;
 
-video.addEventListener("loadedmetadata", () => {
+// 🔥 RELIABLE TIMING FIX (NO INTERVAL)
+video.addEventListener("timeupdate", () => {
 
-  const triggerTime = video.duration - 5; // 🔥 MUCH EARLIER START
+  if (!video.duration) return;
 
-  const interval = setInterval(() => {
+  const triggerTime = video.duration - 3; // 3 sec before end
 
-    if (video.currentTime >= triggerTime && !introDone) {
-      introDone = true;
-      clearInterval(interval);
-      playIntroAnimation();
-    }
-
-  }, 100);
+  if (video.currentTime >= triggerTime && !introDone) {
+    introDone = true;
+    playIntroAnimation();
+  }
 
 });
 
 function playIntroAnimation() {
 
-  // overlay fade
+  // overlay
   gsap.to(".overlay", {
     opacity: 1,
     duration: 1.5
   });
 
-  // ganesh fade
+  // ganesh
   gsap.to(".ganesh", {
     opacity: 1,
     duration: 1.8,
     delay: 0.4
   });
 
-  // 🔥 VERY SLOW, MAGICAL TEXT
+  // magical text
   gsap.to(".line span", {
     clipPath: "inset(0 0% 0 0)",
     opacity: 1,
-    stagger: 0.8,        // slower gap between lines
-    duration: 2.2,       // slower reveal
-    ease: "power1.out",  // softer motion
+    stagger: 0.8,
+    duration: 2.2,
+    ease: "power1.out",
     delay: 0.8
   });
 
-  // unlock scroll after full animation
+  // unlock scroll
   setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
-  }, 5000); // longer lock for cinematic feel
-
+  }, 5000);
 }
 
 
@@ -72,7 +69,7 @@ function initScroll() {
           trigger: panel,
           start: "top 85%",
           end: "top 40%",
-          scrub: true
+          scrub: 1
         }
       }
     );
