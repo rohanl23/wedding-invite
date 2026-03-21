@@ -48,29 +48,57 @@ function playIntroAnimation() {
     y: 8,
     repeat: -1,
     yoyo: true,
-    duration: 1,
-    ease: "power1.inOut"
+    duration: 1
   });
 
   setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
-    startFlowerFlow(); // 🔥 NEW
+    startPetals();
   }, 5000);
 }
 
 
-// 🔥 CONTINUOUS FLOW FIX
-function startFlowerFlow() {
+// 🔥 PETALS (CONTROLLED FALL)
+function startPetals() {
 
-  gsap.to(".lottie-wrap", {
-    y: "100%",
-    duration: 10,
-    ease: "none",
-    repeat: -1
-  });
+  const container = document.querySelector(".petals");
+
+  for (let i = 0; i < 20; i++) { // reduced count
+
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+
+    petal.style.left = Math.random() * 100 + "%";
+    petal.style.top = "-10%";
+
+    container.appendChild(petal);
+
+    gsap.to(petal, {
+      y: "110vh",
+      x: "random(-50,50)",
+      duration: "random(6,10)",
+      repeat: -1,
+      ease: "none",
+      delay: Math.random() * 5
+    });
+
+  }
 
 }
+
+
+// 🔥 HALDI TITLE ANIMATION
+gsap.to(".haldi-title span", {
+  clipPath: "inset(0 0% 0 0)",
+  opacity: 1,
+  duration: 2,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: ".haldi",
+    start: "top 60%",
+  }
+});
 
 
 // PINNED SCROLL
@@ -86,17 +114,6 @@ function initScroll() {
       end: "+=100%",
       pin: true,
       pinSpacing: false
-    });
-
-    gsap.from(panel, {
-      opacity: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: panel,
-        start: "top 80%",
-        end: "top 30%",
-        scrub: true
-      }
     });
 
   });
