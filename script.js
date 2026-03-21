@@ -3,7 +3,8 @@ gsap.registerPlugin(ScrollTrigger);
 const video = document.getElementById("introVideo");
 let introDone = false;
 
-// 🎬 FIXED INTRO TIMING
+
+// 🎬 INTRO TIMING
 video.addEventListener("timeupdate", () => {
 
   if (!video.duration) return;
@@ -17,12 +18,10 @@ video.addEventListener("timeupdate", () => {
 
 });
 
+
 function playIntroAnimation() {
 
-  gsap.to(".overlay", {
-    opacity: 1,
-    duration: 1.5
-  });
+  gsap.to(".overlay", { opacity: 1, duration: 1.5 });
 
   gsap.to(".ganesh", {
     opacity: 1,
@@ -46,40 +45,44 @@ function playIntroAnimation() {
 }
 
 
-// 🔥 SIMPLE + CLEAN TRANSITIONS (NO WEIRD FEEL)
+// 🔥 MASTER SCROLL EXPERIENCE
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
 
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: document.body,
+      start: "top top",
+      end: "+=" + (panels.length * 100) + "%",
+      scrub: 1,
+      pin: true
+    }
+  });
+
+
+  // 👉 INTRO → FIRST PAGE
+  tl.to(".intro", {
+    opacity: 0,
+    duration: 1
+  });
+
+
   panels.forEach((panel, i) => {
 
-    if (i === 0) return;
-
-    // next section fades in
-    gsap.fromTo(panel,
-      { opacity: 0 },
-      {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: panel,
-          start: "top 90%",
-          end: "top 40%",
-          scrub: true
-        }
-      }
-    );
-
-    // current moves slightly up
-    gsap.to(panels[i - 1], {
-      y: -50,
-      opacity: 0.8,
-      scrollTrigger: {
-        trigger: panel,
-        start: "top 90%",
-        end: "top 40%",
-        scrub: true
-      }
+    // fade in current
+    tl.from(panel, {
+      opacity: 0,
+      duration: 1
     });
+
+    // fade out after
+    if (i !== panels.length - 1) {
+      tl.to(panel, {
+        opacity: 0,
+        duration: 1
+      });
+    }
 
   });
 
