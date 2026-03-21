@@ -16,27 +16,22 @@ body {
   object-fit: cover;
 }
 
-/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   opacity: 0;
 }
 
-/* GANESH */
 .ganesh {
   width: 140px;
   margin-bottom: 18px;
   opacity: 0;
 }
 
-/* SHLOKA */
 .shloka {
   color: #5a2e12;
   text-align: center;
@@ -55,17 +50,15 @@ body {
   font-size: 1.6rem;
 }
 
-/* 🔥 SCROLL INDICATOR (MOVED UP) */
+/* SCROLL */
 .scroll-indicator {
   position: absolute;
-  bottom: 60px; /* was 30px */
+  bottom: 60px;
   width: 100%;
   text-align: center;
-
   color: #5a2e12;
   font-size: 0.9rem;
   letter-spacing: 2px;
-
   opacity: 0;
 }
 
@@ -73,10 +66,8 @@ body {
   width: 10px;
   height: 10px;
   margin: 8px auto 0;
-
   border-right: 2px solid #5a2e12;
   border-bottom: 2px solid #5a2e12;
-
   transform: rotate(45deg);
 }
 
@@ -102,19 +93,19 @@ body {
   color: white;
 }
 
-/* LOTTIE BASE */
-.lottie {
+/* 🔥 LOTTIE WRAPPER (KEY FIX) */
+.lottie-wrap {
   position: absolute;
+  top: -100%;   /* start ABOVE screen */
+  left: 0;
+  width: 100%;
+  height: 200%; /* double height */
+  overflow: hidden;
+}
+
+/* LOTTIE */
+.lottie {
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-/* 🔥 HALDI FLOWER FIX */
-.haldi-lottie {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;   /* extra height so particles start off-screen */
-  transform: translateY(-10%);
 }

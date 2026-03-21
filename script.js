@@ -4,7 +4,7 @@ const video = document.getElementById("introVideo");
 let introDone = false;
 
 
-// 🎬 INTRO
+// INTRO
 video.addEventListener("timeupdate", () => {
 
   if (!video.duration) return;
@@ -55,16 +55,30 @@ function playIntroAnimation() {
   setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
+    startFlowerFlow(); // 🔥 NEW
   }, 5000);
 }
 
 
-// 🔥 PINNED SCROLL EXPERIENCE
+// 🔥 CONTINUOUS FLOW FIX
+function startFlowerFlow() {
+
+  gsap.to(".lottie-wrap", {
+    y: "100%",
+    duration: 10,
+    ease: "none",
+    repeat: -1
+  });
+
+}
+
+
+// PINNED SCROLL
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
 
-  panels.forEach((panel, i) => {
+  panels.forEach((panel) => {
 
     ScrollTrigger.create({
       trigger: panel,
