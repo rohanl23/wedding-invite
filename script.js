@@ -38,6 +38,22 @@ function playIntroAnimation() {
     delay: 0.8
   });
 
+  // 🔥 Scroll indicator appears AFTER shloka
+  gsap.to(".scroll-indicator", {
+    opacity: 1,
+    duration: 1,
+    delay: 3.5
+  });
+
+  // arrow animation
+  gsap.to(".arrow", {
+    y: 8,
+    repeat: -1,
+    yoyo: true,
+    duration: 1,
+    ease: "power1.inOut"
+  });
+
   setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
@@ -45,14 +61,13 @@ function playIntroAnimation() {
 }
 
 
-// 🔥 PINNED EXPERIENCE
+// 🔥 PINNED SCROLL EXPERIENCE
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
 
   panels.forEach((panel, i) => {
 
-    // PIN EACH SECTION
     ScrollTrigger.create({
       trigger: panel,
       start: "top top",
@@ -61,7 +76,6 @@ function initScroll() {
       pinSpacing: false
     });
 
-    // FADE IN
     gsap.from(panel, {
       opacity: 0,
       duration: 1,
