@@ -1,29 +1,60 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// 🔥 INTRO TIMELINE (CONTROL EVERYTHING)
-const tl = gsap.timeline({
-  onComplete: () => {
+const video = document.getElementById("introVideo");
+
+let introDone = false;
+
+// WAIT FOR VIDEO METADATA
+video.addEventListener("loadedmetadata", () => {
+
+  const triggerTime = video.duration - 1.5;
+
+  const interval = setInterval(() => {
+
+    if (video.currentTime >= triggerTime && !introDone) {
+      introDone = true;
+      clearInterval(interval);
+      playIntroAnimation();
+    }
+
+  }, 100);
+
+});
+
+function playIntroAnimation() {
+
+  // show overlay
+  gsap.to(".overlay", {
+    opacity: 1,
+    duration: 1
+  });
+
+  // ganesh fade
+  gsap.to(".ganesh", {
+    opacity: 1,
+    duration: 1,
+    delay: 0.2
+  });
+
+  // magical reveal
+  gsap.to(".line span", {
+    clipPath: "inset(0 0% 0 0)",
+    opacity: 1,
+    stagger: 0.4,
+    duration: 1.2,
+    ease: "power2.out",
+    delay: 0.4
+  });
+
+  // unlock scroll AFTER animation
+  setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
-  }
-});
-
-// SHOW OVERLAY
-tl.to(".overlay", {
-  opacity: 1,
-  duration: 1.2
-});
-
-// 🔥 LEFT → RIGHT TEXT REVEAL
-tl.to(".line span", {
-  x: 0,
-  stagger: 0.5,
-  duration: 1,
-  ease: "power3.out"
-}, "-=0.5");
+  }, 2500);
+}
 
 
-// 🔥 MORPH-LIKE SCROLL
+// 🔥 CLEAN TRANSITIONS
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
@@ -34,12 +65,12 @@ function initScroll() {
 
     gsap.fromTo(panel,
       {
-        scale: 1.1,
-        opacity: 0
+        opacity: 0,
+        scale: 1.05
       },
       {
-        scale: 1,
         opacity: 1,
+        scale: 1,
         scrollTrigger: {
           trigger: panel,
           start: "top 85%",

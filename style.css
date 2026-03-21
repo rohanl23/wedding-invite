@@ -33,16 +33,17 @@ body {
 .ganesh {
   width: 110px;
   margin-bottom: 16px;
+  opacity: 0;
 }
 
-/* 🔥 SHLOKA (FIXED SPACING) */
+/* SHLOKA */
 .shloka {
   color: #5a2e12;
   text-align: center;
-  line-height: 1.4; /* reduced spacing */
+  line-height: 1.4;
 }
 
-/* LINE WRAPPER FOR MASK EFFECT */
+/* MAGIC TEXT */
 .line {
   overflow: hidden;
   margin: 2px 0;
@@ -50,7 +51,8 @@ body {
 
 .line span {
   display: inline-block;
-  transform: translateX(-100%);
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
 }
 
 /* PANELS */
@@ -72,6 +74,7 @@ body {
 
 /* CONTENT */
 .content {
+  position: relative;
   z-index: 2;
   color: white;
 }
@@ -82,5 +85,4 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.8;
 }
