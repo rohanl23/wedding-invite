@@ -38,14 +38,12 @@ function playIntroAnimation() {
     delay: 0.8
   });
 
-  // 🔥 Scroll indicator appears AFTER shloka
   gsap.to(".scroll-indicator", {
     opacity: 1,
     duration: 1,
     delay: 3.5
   });
 
-  // arrow animation
   gsap.to(".arrow", {
     y: 8,
     repeat: -1,
