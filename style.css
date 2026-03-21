@@ -1,42 +1,44 @@
 body {
   margin: 0;
-  font-family: 'Playfair Display', serif;
   overflow-x: hidden;
-  color: white;
-}
-
-/* VIDEO (FIXED - NO ZOOM / NO BLUR) */
-#introVideo {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-
-  height: 100%;
-  width: auto;
-
-  transform: translate(-50%, -50%);
-
-  z-index: 10;
   background: black;
+  color: white;
+  font-family: 'Tiro Devanagari Sanskrit', serif;
 }
 
-/* GANESH SECTION */
-.ganesh-section {
+/* VIDEO */
+.video-section {
+  position: relative;
   height: 100vh;
+}
+
+#introVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  background: url('assets/door-final.jpg') center/cover no-repeat;
-
   opacity: 0;
 }
 
-/* GANESH */
+/* GANESH (WITH GLOW) */
 .ganesh {
-  width: 140px;
-  margin-top: -40px;
+  width: 110px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
 }
 
 /* SHLOKA */
@@ -44,22 +46,21 @@ body {
   display: block;
   opacity: 0;
   transform: translateY(20px);
-  color: gold;
   font-size: 1.3rem;
+  color: #d4af37;
+  text-align: center;
 }
 
 /* PANELS */
 .panel {
   height: 100vh;
   position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-}
 
-.content {
-  z-index: 2;
+  overflow: hidden;
 }
 
 /* BACKGROUNDS */
@@ -68,15 +69,26 @@ body {
 .wedding { background: url('assets/wedding.jpg') center/cover no-repeat; }
 .thankyou { background: url('assets/thankyou.jpg') center/cover no-repeat; }
 
+/* TEXT */
+.content {
+  z-index: 2;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1rem;
+}
+
 /* LOTTIE */
 .lottie {
   position: absolute;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  opacity: 0.8;
 }
-
-/* TEXT */
-h2 { font-size: 2.8rem; }
-p { font-size: 1.2rem; }
