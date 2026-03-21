@@ -4,7 +4,7 @@ const video = document.getElementById("introVideo");
 let introDone = false;
 
 
-// 🎬 INTRO TIMING
+// 🎬 INTRO
 video.addEventListener("timeupdate", () => {
 
   if (!video.duration) return;
@@ -45,44 +45,33 @@ function playIntroAnimation() {
 }
 
 
-// 🔥 MASTER SCROLL EXPERIENCE
+// 🔥 PINNED EXPERIENCE
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: document.body,
-      start: "top top",
-      end: "+=" + (panels.length * 100) + "%",
-      scrub: 1,
-      pin: true
-    }
-  });
-
-
-  // 👉 INTRO → FIRST PAGE
-  tl.to(".intro", {
-    opacity: 0,
-    duration: 1
-  });
-
-
   panels.forEach((panel, i) => {
 
-    // fade in current
-    tl.from(panel, {
-      opacity: 0,
-      duration: 1
+    // PIN EACH SECTION
+    ScrollTrigger.create({
+      trigger: panel,
+      start: "top top",
+      end: "+=100%",
+      pin: true,
+      pinSpacing: false
     });
 
-    // fade out after
-    if (i !== panels.length - 1) {
-      tl.to(panel, {
-        opacity: 0,
-        duration: 1
-      });
-    }
+    // FADE IN
+    gsap.from(panel, {
+      opacity: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: panel,
+        start: "top 80%",
+        end: "top 30%",
+        scrub: true
+      }
+    });
 
   });
 
