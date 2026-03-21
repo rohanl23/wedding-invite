@@ -1,24 +1,20 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const overlay = document.querySelector(".overlay");
-
-// 🔥 SIMPLE + RELIABLE (NO VIDEO DEPENDENCY)
+// INTRO
 setTimeout(() => {
 
-  // SHOW GANESH
-  gsap.to(overlay, {
+  gsap.to(".overlay", {
     opacity: 1,
     duration: 1.5
   });
 
-  gsap.from(".shloka span", {
-    opacity: 0,
-    y: 20,
+  gsap.to(".shloka span", {
+    opacity: 1,
+    y: 0,
     stagger: 0.4,
     delay: 0.5
   });
 
-  // ENABLE SCROLL
   document.body.style.overflow = "auto";
 
   initScroll();
@@ -26,19 +22,26 @@ setTimeout(() => {
 }, 2500);
 
 
-// 🔥 CLEAN SCROLL (NO BLACK SCREEN)
+// 🔥 REAL TRANSITION EFFECT
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
 
   panels.forEach((panel, i) => {
 
-    ScrollTrigger.create({
-      trigger: panel,
-      start: "top top",
-      pin: true,
-      pinSpacing: false,
-      end: "+=100%"
+    if (i === 0) return;
+
+    gsap.from(panel, {
+      opacity: 0,
+      scale: 0.95,
+      duration: 1,
+
+      scrollTrigger: {
+        trigger: panel,
+        start: "top 85%",
+        end: "top 50%",
+        scrub: true
+      }
     });
 
   });
