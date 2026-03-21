@@ -32,21 +32,25 @@ body {
 /* GANESH */
 .ganesh {
   width: 110px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-/* 🔥 SHLOKA FIX */
+/* 🔥 SHLOKA (FIXED SPACING) */
 .shloka {
-  text-align: center;
   color: #5a2e12;
-  line-height: 2;
+  text-align: center;
+  line-height: 1.4; /* reduced spacing */
 }
 
-.shloka span {
-  display: block;   /* THIS FIXES SINGLE LINE ISSUE */
-  font-size: 1.3rem;
-  margin: 4px 0;
-  opacity: 0;
+/* LINE WRAPPER FOR MASK EFFECT */
+.line {
+  overflow: hidden;
+  margin: 2px 0;
+}
+
+.line span {
+  display: inline-block;
+  transform: translateX(-100%);
 }
 
 /* PANELS */
@@ -68,17 +72,15 @@ body {
 
 /* CONTENT */
 .content {
-  position: relative;
   z-index: 2;
-  text-align: center;
   color: white;
 }
 
-/* 🔥 LOTTIE FIX */
+/* LOTTIE */
 .lottie {
   position: absolute;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  opacity: 0.8;
 }

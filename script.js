@@ -1,28 +1,29 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// INTRO
-setTimeout(() => {
+// 🔥 INTRO TIMELINE (CONTROL EVERYTHING)
+const tl = gsap.timeline({
+  onComplete: () => {
+    document.body.style.overflow = "auto";
+    initScroll();
+  }
+});
 
-  gsap.to(".overlay", {
-    opacity: 1,
-    duration: 1.5
-  });
+// SHOW OVERLAY
+tl.to(".overlay", {
+  opacity: 1,
+  duration: 1.2
+});
 
-  gsap.to(".shloka span", {
-    opacity: 1,
-    y: 0,
-    stagger: 0.4,
-    delay: 0.5
-  });
-
-  document.body.style.overflow = "auto";
-
-  initScroll();
-
-}, 2500);
+// 🔥 LEFT → RIGHT TEXT REVEAL
+tl.to(".line span", {
+  x: 0,
+  stagger: 0.5,
+  duration: 1,
+  ease: "power3.out"
+}, "-=0.5");
 
 
-// 🔥 REAL TRANSITION EFFECT
+// 🔥 MORPH-LIKE SCROLL
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
@@ -31,18 +32,22 @@ function initScroll() {
 
     if (i === 0) return;
 
-    gsap.from(panel, {
-      opacity: 0,
-      scale: 0.95,
-      duration: 1,
-
-      scrollTrigger: {
-        trigger: panel,
-        start: "top 85%",
-        end: "top 50%",
-        scrub: true
+    gsap.fromTo(panel,
+      {
+        scale: 1.1,
+        opacity: 0
+      },
+      {
+        scale: 1,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: panel,
+          start: "top 85%",
+          end: "top 40%",
+          scrub: true
+        }
       }
-    });
+    );
 
   });
 
