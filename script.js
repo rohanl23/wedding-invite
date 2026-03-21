@@ -2,58 +2,59 @@ gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
 
-// FORCE VIDEO PLAY
-video.play().catch(() => {
-  console.log("Autoplay blocked");
-});
+// PLAY VIDEO
+video.play().catch(() => {});
 
-// TRANSITION AFTER VIDEO
+// AFTER VIDEO ENDS
 video.addEventListener("ended", () => {
 
-  gsap.to("#introVideo", {
-    opacity: 0,
-    scale: 1.05,
-    duration: 1.2,
-    ease: "power2.out"
-  });
-
-  gsap.to(".ganesh-section", {
+  // Show Ganesh
+  gsap.to(".overlay", {
     opacity: 1,
-    duration: 1.2,
-    delay: 0.3
+    duration: 1.5
   });
 
+  // Animate shloka
   gsap.to(".shloka span", {
     opacity: 1,
     y: 0,
-    stagger: 0.4,
-    delay: 1
+    stagger: 0.5,
+    delay: 0.8
   });
 
+  // Enable scroll AFTER intro
+  document.body.style.overflowY = "auto";
+
+  initScrollAnimations();
 });
 
-// SCROLL TRANSITION
-gsap.to(".panel", {
-  yPercent: -100,
-  ease: "none",
-  stagger: 1,
-  scrollTrigger: {
-    trigger: "body",
-    pin: true,
-    scrub: 1,
-    end: "+=4000"
-  }
-});
+// INIT SCROLL
+function initScrollAnimations() {
 
-// TEXT ANIMATION
-gsap.utils.toArray(".panel").forEach(panel => {
-  gsap.from(panel.querySelector(".content"), {
-    opacity: 0,
-    y: 50,
+  // MORPH / SLIDE EFFECT
+  gsap.to(".panel", {
+    yPercent: -100,
+    ease: "none",
+    stagger: 1,
     scrollTrigger: {
-      trigger: panel,
-      start: "top 80%",
-      scrub: true
+      trigger: ".panel",
+      start: "top top",
+      end: "+=4000",
+      scrub: 1,
+      pin: true
     }
   });
-});
+
+  // TEXT FADE-IN
+  gsap.utils.toArray(".content").forEach(content => {
+    gsap.from(content, {
+      opacity: 0,
+      y: 40,
+      scrollTrigger: {
+        trigger: content,
+        start: "top 80%",
+        scrub: true
+      }
+    });
+  });
+}
