@@ -2,21 +2,34 @@ gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
 
-video.play().catch(() => showGanesh());
+// 🔥 FORCE PLAY
+video.muted = true;
+video.play().catch(() => {
+  console.log("Autoplay failed → fallback");
+  showGanesh();
+});
 
-video.addEventListener("ended", showGanesh);
+// 🔥 ALWAYS TRIGGER (FIX)
+video.onended = showGanesh;
 
+// 🔥 BACKUP (IMPORTANT)
 setTimeout(() => {
-  if (video.currentTime === 0) showGanesh();
-}, 2000);
+  showGanesh();
+}, 3000);
 
 function showGanesh() {
 
+  // prevent multiple triggers
+  if (document.body.classList.contains("started")) return;
+  document.body.classList.add("started");
+
+  // show overlay
   gsap.to(".overlay", {
     opacity: 1,
     duration: 1.5
   });
 
+  // animate text
   gsap.to(".shloka span", {
     opacity: 1,
     y: 0,
@@ -24,18 +37,26 @@ function showGanesh() {
     delay: 0.5
   });
 
+  // unlock scroll
   document.body.style.overflow = "auto";
 
-  gsap.to(".panel", {
-    yPercent: -100,
-    stagger: 1,
+  initScroll();
+}
+
+function initScroll() {
+
+  const panels = gsap.utils.toArray(".panel");
+
+  gsap.to(panels, {
+    yPercent: -100 * (panels.length - 1), // ✅ FIXED (NO EXTRA BLACK SCREEN)
     ease: "none",
     scrollTrigger: {
       trigger: ".panel",
       start: "top top",
-      end: "+=3000",
+      end: () => "+=" + window.innerHeight * panels.length,
       scrub: 1,
       pin: true
     }
   });
+
 }
