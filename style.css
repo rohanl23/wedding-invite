@@ -8,15 +8,15 @@ body {
 /* VIDEO */
 #introVideo {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* FIXED */
-  background: url('assets/door-final.jpg') center/cover no-repeat;
+  object-fit: cover; /* NO BLUR */
   z-index: 10;
-  transition: opacity 1s ease;
 }
 
-/* GANESH */
+/* GANESH SECTION */
 .ganesh-section {
   height: 100vh;
   display: flex;
@@ -29,11 +29,13 @@ body {
   opacity: 0;
 }
 
+/* GANESH */
 .ganesh {
   width: 140px;
-  margin-top: -40px; /* adjust if needed */
+  margin-top: -40px; /* adjust based on alignment */
 }
 
+/* SHLOKA */
 .shloka span {
   display: block;
   opacity: 0;
