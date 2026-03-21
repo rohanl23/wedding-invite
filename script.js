@@ -4,7 +4,6 @@ const video = document.getElementById("introVideo");
 
 let introDone = false;
 
-// 🎬 PERFECT TIMING (RELIABLE)
 video.addEventListener("timeupdate", () => {
 
   if (!video.duration) return;
@@ -20,20 +19,17 @@ video.addEventListener("timeupdate", () => {
 
 function playIntroAnimation() {
 
-  // overlay
   gsap.to(".overlay", {
     opacity: 1,
     duration: 1.5
   });
 
-  // ganesh
   gsap.to(".ganesh", {
     opacity: 1,
     duration: 1.8,
     delay: 0.4
   });
 
-  // magical text
   gsap.to(".line span", {
     clipPath: "inset(0 0% 0 0)",
     opacity: 1,
@@ -43,7 +39,6 @@ function playIntroAnimation() {
     delay: 0.8
   });
 
-  // unlock scroll AFTER animation
   setTimeout(() => {
     document.body.style.overflow = "auto";
     initScroll();
@@ -51,7 +46,6 @@ function playIntroAnimation() {
 }
 
 
-// 🔥 PREMIUM TRANSITIONS
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
@@ -60,7 +54,6 @@ function initScroll() {
 
     if (i === 0) return;
 
-    // next panel enters
     gsap.fromTo(panel,
       {
         y: 100,
@@ -71,7 +64,6 @@ function initScroll() {
         y: 0,
         scale: 1,
         opacity: 1,
-        ease: "power2.out",
         scrollTrigger: {
           trigger: panel,
           start: "top 90%",
@@ -81,7 +73,6 @@ function initScroll() {
       }
     );
 
-    // previous fades
     gsap.to(panels[i - 1], {
       scale: 0.95,
       opacity: 0.6,
