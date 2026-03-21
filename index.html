@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohan & Shyamili</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- GSAP -->
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<!-- Lottie -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- VIDEO INTRO -->
+<video id="introVideo" autoplay muted playsinline preload="auto">
+  <source src="assets/door-opening.mp4" type="video/mp4">
+</video>
+
+<!-- GANESH -->
+<section class="ganesh-section">
+  <img src="assets/ganesh.png" class="ganesh">
+
+  <p class="shloka">
+    <span>Vakratunda Mahakaya</span>
+    <span>Suryakoti Samaprabha</span>
+    <span>Nirvighnam Kurume Deva</span>
+    <span>Sarva Karyeshu Sarvada</span>
+  </p>
+</section>
+
+<!-- HALDI -->
+<section class="panel haldi">
+  <div class="content">
+    <h2>Haldi</h2>
+    <p>8 May 2026 • 4 PM • Venue</p>
+  </div>
+  <lottie-player src="assets/flower.json" loop autoplay class="lottie"></lottie-player>
+</section>
+
+<!-- RING -->
+<section class="panel ring">
+  <div class="content">
+    <h2>Ring Ceremony</h2>
+    <p>9 May 2026 • 7 PM • Venue</p>
+  </div>
+  <lottie-player src="assets/sparkles.json" loop autoplay class="lottie"></lottie-player>
+</section>
+
+<!-- WEDDING -->
+<section class="panel wedding">
+  <div class="content">
+    <h2>Wedding</h2>
+    <p>10 May 2026 • Venue</p>
+  </div>
+  <lottie-player src="assets/confetti.json" loop autoplay class="lottie"></lottie-player>
+</section>
+
+<!-- THANK YOU -->
+<section class="panel thankyou">
+  <div class="content">
+    <h2>Rohan & Shyamili</h2>
+
+    <p class="parents">
+      With love,<br>
+      Mr. & Mrs. Lalchandani<br>
+      &<br>
+      Mr. & Mrs. [Her Side]
+    </p>
+
+    <p class="message">
+      Can't wait for you to celebrate with us.
+    </p>
+  </div>
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
