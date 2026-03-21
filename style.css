@@ -5,15 +5,19 @@ body {
   color: white;
 }
 
-/* VIDEO */
+/* VIDEO (FIXED - NO ZOOM / NO BLUR) */
 #introVideo {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+
   height: 100%;
-  object-fit: cover; /* NO BLUR */
+  width: auto;
+
+  transform: translate(-50%, -50%);
+
   z-index: 10;
+  background: black;
 }
 
 /* GANESH SECTION */
@@ -32,7 +36,7 @@ body {
 /* GANESH */
 .ganesh {
   width: 140px;
-  margin-top: -40px; /* adjust based on alignment */
+  margin-top: -40px;
 }
 
 /* SHLOKA */
