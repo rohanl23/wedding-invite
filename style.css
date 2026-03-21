@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden; /* lock scroll initially */
   background: black;
   color: white;
   font-family: 'Tiro Devanagari Sanskrit', serif;
@@ -16,6 +16,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background: black;
 }
 
 /* OVERLAY */
@@ -34,11 +35,11 @@ body {
   opacity: 0;
 }
 
-/* GANESH (WITH GLOW) */
+/* GANESH */
 .ganesh {
   width: 110px;
   margin-bottom: 20px;
-  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
+  filter: drop-shadow(0 0 12px rgba(255,215,0,0.8));
 }
 
 /* SHLOKA */
@@ -48,47 +49,19 @@ body {
   transform: translateY(20px);
   font-size: 1.3rem;
   color: #d4af37;
-  text-align: center;
 }
 
 /* PANELS */
 .panel {
   height: 100vh;
-  position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
-  overflow: hidden;
 }
 
-/* BACKGROUNDS */
-.haldi { background: url('assets/haldi.jpg') center/cover no-repeat; }
-.ring { background: url('assets/ring.jpg') center/cover no-repeat; }
-.wedding { background: url('assets/wedding.jpg') center/cover no-repeat; }
-.thankyou { background: url('assets/thankyou.jpg') center/cover no-repeat; }
-
-/* TEXT */
 .content {
-  z-index: 2;
   text-align: center;
 }
 
-h2 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-}
-
-p {
-  font-size: 1rem;
-}
-
-/* LOTTIE */
-.lottie {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.8;
-}
+h2 { font-size: 2rem; }
+p { font-size: 1rem; }
