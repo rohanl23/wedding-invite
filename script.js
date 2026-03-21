@@ -2,59 +2,63 @@ gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
 
-// PLAY VIDEO
-video.play().catch(() => {});
+// TRY PLAY VIDEO
+video.play().then(() => {
+  console.log("Video playing");
+}).catch(() => {
+  console.log("Autoplay blocked");
+  showGanesh(); // fallback
+});
 
-// AFTER VIDEO ENDS
+// IF VIDEO ENDS
 video.addEventListener("ended", () => {
+  showGanesh();
+});
 
-  // Show Ganesh
+// FALLBACK (if video stuck)
+setTimeout(() => {
+  if (video.currentTime === 0) {
+    showGanesh();
+  }
+}, 2000);
+
+// MAIN FUNCTION
+function showGanesh() {
+
+  // show overlay
   gsap.to(".overlay", {
     opacity: 1,
     duration: 1.5
   });
 
-  // Animate shloka
+  // animate text
   gsap.to(".shloka span", {
     opacity: 1,
     y: 0,
     stagger: 0.5,
-    delay: 0.8
+    delay: 0.5
   });
 
-  // Enable scroll AFTER intro
-  document.body.style.overflowY = "auto";
+  // unlock scroll
+  document.body.style.overflow = "auto";
 
-  initScrollAnimations();
-});
+  initScroll();
+}
 
-// INIT SCROLL
-function initScrollAnimations() {
+// SCROLL EFFECT
+function initScroll() {
 
-  // MORPH / SLIDE EFFECT
   gsap.to(".panel", {
     yPercent: -100,
-    ease: "none",
     stagger: 1,
+    ease: "none",
     scrollTrigger: {
       trigger: ".panel",
       start: "top top",
-      end: "+=4000",
+      end: "+=3000",
       scrub: 1,
       pin: true
     }
   });
 
-  // TEXT FADE-IN
-  gsap.utils.toArray(".content").forEach(content => {
-    gsap.from(content, {
-      opacity: 0,
-      y: 40,
-      scrollTrigger: {
-        trigger: content,
-        start: "top 80%",
-        scrub: true
-      }
-    });
-  });
 }
