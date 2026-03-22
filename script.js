@@ -4,6 +4,25 @@ const video = document.getElementById("introVideo");
 let introDone = false;
 let petalsStarted = false;
 
+/* TAP TO BEGIN + FULLSCREEN */
+const tapScreen = document.querySelector(".tap-to-begin");
+
+tapScreen.addEventListener("click", () => {
+
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
+
+  gsap.to(".tap-to-begin", {
+    opacity: 0,
+    duration: 0.8,
+    onComplete: () => {
+      tapScreen.style.display = "none";
+    }
+  });
+
+}, { once: true });
+
 // INTRO
 video.addEventListener("timeupdate", () => {
   if (!video.duration) return;
@@ -94,7 +113,7 @@ lottie.loadAnimation({
   path: "./assets/sparkles.json"
 });
 
-// HALDI FIX
+// HALDI
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
@@ -109,7 +128,7 @@ ScrollTrigger.create({
   }
 });
 
-// RING (already correct)
+// RING
 ScrollTrigger.create({
   trigger: ".ring",
   start: "top 80%",
@@ -122,7 +141,7 @@ ScrollTrigger.create({
   }
 });
 
-// WEDDING FIX
+// WEDDING
 ScrollTrigger.create({
   trigger: ".wedding",
   start: "top 80%",
@@ -138,7 +157,7 @@ ScrollTrigger.create({
   }
 });
 
-// THANK YOU (circular reveal + shimmer)
+// THANK YOU
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",
@@ -193,9 +212,3 @@ function initScroll() {
     });
   });
 }
-
-document.addEventListener("click", () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  }
-}, { once: true });
