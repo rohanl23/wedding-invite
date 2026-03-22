@@ -1,9 +1,8 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
-
 let introDone = false;
-let haldiPlayed = false;
+let petalsStarted = false;
 
 
 // INTRO
@@ -13,20 +12,17 @@ video.addEventListener("timeupdate", () => {
 
   if (video.currentTime >= video.duration - 3 && !introDone) {
     introDone = true;
-    playIntro();
+    playIntroAnimation();
   }
 
 });
 
 
-function playIntro() {
+function playIntroAnimation() {
 
   gsap.to(".overlay", { opacity: 1, duration: 1.5 });
 
-  gsap.to(".ganesh", {
-    opacity: 1,
-    duration: 1.5
-  });
+  gsap.to(".ganesh", { opacity: 1, duration: 1.5, delay: 0.5 });
 
   gsap.to(".line span", {
     clipPath: "inset(0 0% 0 0)",
@@ -44,38 +40,11 @@ function playIntro() {
 }
 
 
-// HALDI SEQUENCE (UPDATED TIMING ONLY)
-function playHaldiSequence() {
-
-  if (haldiPlayed) return;
-  haldiPlayed = true;
-
-  document.body.style.overflow = "hidden";
-
-  const tl = gsap.timeline({
-    onComplete: () => {
-      document.body.style.overflow = "auto";
-    }
-  });
-
-  tl.to(".haldi-title", { opacity: 1, duration: 1.5 })
-    .to(".poetry", { opacity: 1, y: -10, duration: 1.2 }, "+=0.4")
-    .to(".datetime-block", { opacity: 1, y: -10, duration: 1.2 }, "+=0.4")
-    .to(".venue-block", { opacity: 1, y: -10, duration: 1.2 }, "+=0.4");
-
-}
-
-
-// TRIGGER HALDI
-ScrollTrigger.create({
-  trigger: ".haldi",
-  start: "top center",
-  onEnter: playHaldiSequence
-});
-
-
-// PETALS (ONLY START POSITION FIXED)
+// 🌼 PETALS FROM TOP
 function startPetals() {
+
+  if (petalsStarted) return;
+  petalsStarted = true;
 
   const container = document.querySelector(".petals");
 
@@ -85,21 +54,25 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "5vh"; // ✅ fixed
+    petal.style.top = "0vh"; // 🔥 FIXED
 
     container.appendChild(petal);
 
     gsap.to(petal, {
       y: "110vh",
+      x: "random(-40,40)",
       duration: "random(8,12)",
       repeat: -1,
-      ease: "none"
+      ease: "none",
+      delay: Math.random() * 5
     });
 
   }
 
 }
 
+
+// trigger on haldi
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
@@ -107,7 +80,33 @@ ScrollTrigger.create({
 });
 
 
-// PIN
+// ✨ TITLES
+gsap.utils.toArray(".title span").forEach(el => {
+  gsap.to(el, {
+    clipPath: "inset(0 0% 0 0)",
+    opacity: 1,
+    duration: 3,
+    scrollTrigger: {
+      trigger: el,
+      start: "top 70%"
+    }
+  });
+});
+
+
+// ✨ POETRY ANIMATION
+gsap.from(".poetry", {
+  opacity: 0,
+  y: 30,
+  duration: 1.5,
+  scrollTrigger: {
+    trigger: ".poetry",
+    start: "top 80%"
+  }
+});
+
+
+// PIN SCROLL
 function initScroll() {
 
   const panels = gsap.utils.toArray(".panel");
