@@ -4,6 +4,9 @@ const video = document.getElementById("introVideo");
 let introDone = false;
 let petalsStarted = false;
 
+// 🔒 LOCK SCROLL INITIALLY
+document.body.style.overflow = "hidden";
+
 // INTRO
 video.addEventListener("timeupdate", () => {
   if (!video.duration) return;
@@ -16,24 +19,29 @@ video.addEventListener("timeupdate", () => {
 
 function playIntroAnimation() {
 
-  gsap.to(".overlay", { opacity: 1, duration: 1.5 });
-
-  gsap.to(".ganesh", { opacity: 1, duration: 1.5, delay: 0.5 });
-
-  gsap.to(".line span", {
-    clipPath: "inset(0 0% 0 0)",
-    opacity: 1,
-    stagger: 0.8,
-    duration: 2
+  const tl = gsap.timeline({
+    onComplete: () => {
+      document.body.style.overflow = "auto"; // ✅ unlock after intro
+      initScroll();
+    }
   });
 
-  gsap.to(".scroll-indicator", { opacity: 1, delay: 3 });
+  tl.to(".overlay", { opacity: 1, duration: 1.2 })
 
-  setTimeout(() => {
-    document.body.style.overflow = "auto";
-    initScroll();
-  }, 5000);
+    // ✅ GANESH FIRST
+    .to(".ganesh", { opacity: 1, duration: 1.2 })
+
+    // ✅ SHLOKA AFTER
+    .to(".line span", {
+      clipPath: "inset(0 0% 0 0)",
+      opacity: 1,
+      stagger: 0.6,
+      duration: 1.5
+    })
+
+    .to(".scroll-indicator", { opacity: 1, duration: 1 }, "-=0.5");
 }
+
 
 // PETALS
 function startPetals() {
@@ -66,13 +74,20 @@ function startPetals() {
 
 }
 
-// HALDI TRIGGER (no scroll blocking now)
+
+// 🔒 HALDI SCROLL LOCK
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
   onEnter: () => {
 
-    const tl = gsap.timeline();
+    document.body.style.overflow = "hidden"; // lock
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        document.body.style.overflow = "auto"; // unlock
+      }
+    });
 
     tl.to(".haldi-title span", {
       clipPath: "inset(0 0% 0 0)",
@@ -97,9 +112,10 @@ ScrollTrigger.create({
       duration: 1
     });
 
-    startPetals();
+    startPetals(); // not part of lock
   }
 });
+
 
 // TITLES
 gsap.utils.toArray(".title span").forEach(el => {
