@@ -15,7 +15,6 @@ video.addEventListener("timeupdate", () => {
 });
 
 function playIntroAnimation() {
-
   const tl = gsap.timeline({
     onComplete: () => {
       document.body.style.overflow = "auto";
@@ -103,6 +102,15 @@ ScrollTrigger.create({
   trigger: ".wedding",
   start: "top 80%",
   onEnter: () => {
+
+    lottie.loadAnimation({
+      container: document.getElementById("confetti"),
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "./assets/confetti.json"
+    });
+
     gsap.timeline()
       .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
