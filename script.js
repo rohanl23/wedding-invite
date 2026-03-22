@@ -104,16 +104,13 @@ ScrollTrigger.create({
   start: "top 80%",
   onEnter: () => {
     gsap.timeline()
-      .fromTo(".wedding-title-main",
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.5 }
-      )
+      .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .venue-block", { opacity: 0, y: 20, duration: 1 });
   }
 });
 
-// GLOBAL TITLE ANIMATION
+// GLOBAL TITLES
 gsap.utils.toArray(".title span").forEach(el => {
   gsap.set(el, { clipPath: "inset(0 100% 0 0)", opacity: 0 });
 

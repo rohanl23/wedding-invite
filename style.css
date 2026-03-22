@@ -104,7 +104,6 @@ body {
   text-align: center;
 }
 
-/* Poetry */
 .poetry {
   font-size: 1.1rem;
   color: #333;
@@ -113,7 +112,6 @@ body {
   font-style: italic;
 }
 
-/* Date */
 .datetime-block {
   margin-top: 60px;
 }
@@ -121,8 +119,8 @@ body {
 .label {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
-  color: #000;
   font-weight: bold;
+  color: #000;
 }
 
 .datetime {
@@ -131,7 +129,6 @@ body {
   color: #000;
 }
 
-/* Venue */
 .venue-block {
   position: absolute;
   bottom: 12%;
@@ -142,11 +139,11 @@ body {
 .venue {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
-  color: #000;
   text-decoration: underline;
+  color: #000;
 }
 
-/* Ring white text */
+/* Ring white */
 .ring .title,
 .ring .poetry,
 .ring .label,
@@ -164,17 +161,31 @@ body {
   pointer-events: none;
 }
 
-/* Wedding title */
-.wedding-title-main {
+/* Wedding subtitle */
+.wedding-subtitle {
   position: absolute;
-  top: 30%;
+  top: 40%;
   width: 100%;
   text-align: center;
-  font-family: 'Cinzel', serif;
-  font-size: 3.2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
   font-weight: bold;
   color: #fff;
-  opacity: 0;
+  white-space: nowrap;
+}
+
+/* Wedding white text */
+.wedding .label,
+.wedding .datetime,
+.wedding .venue {
+  color: #fff;
+}
+
+/* Wedding venue position */
+.wedding-venue {
+  top: 60%;
+  bottom: auto;
 }
 
 /* Petals */
