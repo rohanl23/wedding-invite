@@ -85,6 +85,15 @@ function startConfetti() {
   }
 }
 
+// SPARKLES
+lottie.loadAnimation({
+  container: document.getElementById("sparkles"),
+  renderer: "svg",
+  loop: true,
+  autoplay: true,
+  path: "./assets/sparkles.json"
+});
+
 // HALDI
 ScrollTrigger.create({
   trigger: ".haldi",
@@ -130,38 +139,27 @@ ScrollTrigger.create({
   }
 });
 
-// REPLACE ONLY THANK YOU BLOCK
-
+// THANK YOU UPDATED
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",
   onEnter: () => {
     const tl = gsap.timeline();
 
-    tl.from(".thankyou-poetry p", {
-        opacity: 0,
-        y: 20,
-        stagger: 0.4,
-        duration: 1
-      })
-      .from(".thankyou-line", {
-        opacity: 0,
-        y: 20,
-        duration: 1
-      })
+    tl.to(".thankyou-names", { opacity: 1, duration: 1 })
+      .to(".thankyou-request", { opacity: 1, duration: 1 })
+      .to(".thankyou-line", { opacity: 1, duration: 1 })
       .to(".thankyou-logo", {
         opacity: 1,
         clipPath: "circle(75% at 50% 50%)",
-        duration: 1.2,
-        ease: "power2.out"
+        duration: 1.2
       })
       .to(".thankyou-logo", {
         filter: "drop-shadow(0 0 15px rgba(255,255,255,0.8))",
         scale: 1.05,
         duration: 1.5,
         yoyo: true,
-        repeat: -1,
-        ease: "power1.inOut"
+        repeat: -1
       });
   }
 });

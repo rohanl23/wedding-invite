@@ -47,7 +47,7 @@ body {
 
 .scroll-indicator {
   position: absolute;
-  bottom: 70px;
+  bottom: 85px;
   width: 100%;
   text-align: center;
   color: #5a2e12;
@@ -135,6 +135,10 @@ body {
   text-align: center;
 }
 
+.ring-venue {
+  bottom: 18%;
+}
+
 .venue {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
@@ -150,7 +154,6 @@ body {
   color: #fff;
 }
 
-/* Wedding subtitle */
 .wedding-subtitle {
   position: absolute;
   top: 40%;
@@ -164,7 +167,6 @@ body {
   white-space: nowrap;
 }
 
-/* Shimmer */
 .shimmer {
   background: linear-gradient(90deg, #fff, #ffd700, #fff);
   background-size: 200% auto;
@@ -189,7 +191,6 @@ body {
   bottom: auto;
 }
 
-/* Confetti */
 .confetti-container {
   position: absolute;
   inset: 0;
@@ -203,26 +204,6 @@ body {
   opacity: 0.8;
 }
 
-/* Thank you */
-.thankyou-content {
-  position: absolute;
-  top: 30%;
-  width: 100%;
-  text-align: center;
-}
-
-.thankyou-poetry {
-  color: #000;
-}
-
-.thankyou-line {
-  margin-top: 40px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  color: #000;
-}
-
-/* Petals */
 .petals {
   position: absolute;
   inset: 0;
@@ -237,32 +218,40 @@ body {
   border-radius: 50%;
 }
 
-/* ADD THIS AT BOTTOM */
+/* THANK YOU NEW */
+.thankyou-names {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  line-height: 1.2;
+  opacity: 0;
+}
+
+.thankyou-request {
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+}
+
+.thankyou-line {
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  opacity: 0;
+}
+
 .thankyou-logo {
-  margin-top: 40px;
-  width: 120px;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
   opacity: 0;
   clip-path: circle(0% at 50% 50%);
-  filter: drop-shadow(0 0 0px rgba(255,255,255,0));
-}
-
-/* Remove bold effect */
-.no-bold {
-  font-weight: normal;
-}
-
-/* Add spacing before request line */
-.spaced-text {
-  margin-top: 20px;
-}
-
-/* Update "Can't wait" line */
-.thankyou-line {
-  font-weight: bold;
-  font-size: 1.1rem; /* slightly reduced */
-}
-
-/* Scale logo slightly up */
-.thankyou-logo {
-  width: 140px; /* increased from 120px */
 }
