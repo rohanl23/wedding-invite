@@ -85,7 +85,7 @@ function startConfetti() {
   }
 }
 
-// SPARKLES
+// ✅ SPARKLES RESTORED
 lottie.loadAnimation({
   container: document.getElementById("sparkles"),
   renderer: "svg",
@@ -139,7 +139,7 @@ ScrollTrigger.create({
   }
 });
 
-// THANK YOU UPDATED
+// ✅ THANK YOU UPDATED
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",
@@ -148,7 +148,7 @@ ScrollTrigger.create({
 
     tl.to(".thankyou-names", { opacity: 1, duration: 1 })
       .to(".thankyou-request", { opacity: 1, duration: 1 })
-      .to(".thankyou-line", { opacity: 1, duration: 1 })
+      .to(".blessings", { opacity: 1, duration: 1 })
       .to(".thankyou-logo", {
         opacity: 1,
         clipPath: "circle(75% at 50% 50%)",
@@ -158,8 +158,8 @@ ScrollTrigger.create({
         filter: "drop-shadow(0 0 15px rgba(255,255,255,0.8))",
         scale: 1.05,
         duration: 1.5,
-        yoyo: true,
-        repeat: -1
+        repeat: -1,
+        yoyo: true
       });
   }
 });
