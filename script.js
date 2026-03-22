@@ -10,9 +10,7 @@ video.addEventListener("timeupdate", () => {
 
   if (!video.duration) return;
 
-  const triggerTime = video.duration - 3;
-
-  if (video.currentTime >= triggerTime && !introDone) {
+  if (video.currentTime >= video.duration - 3 && !introDone) {
     introDone = true;
     playIntroAnimation();
   }
@@ -24,33 +22,16 @@ function playIntroAnimation() {
 
   gsap.to(".overlay", { opacity: 1, duration: 1.5 });
 
-  gsap.to(".ganesh", {
-    opacity: 1,
-    duration: 1.8,
-    delay: 0.4
-  });
+  gsap.to(".ganesh", { opacity: 1, duration: 1.5, delay: 0.5 });
 
   gsap.to(".line span", {
     clipPath: "inset(0 0% 0 0)",
     opacity: 1,
     stagger: 0.8,
-    duration: 2.2,
-    ease: "power1.out",
-    delay: 0.8
+    duration: 2
   });
 
-  gsap.to(".scroll-indicator", {
-    opacity: 1,
-    duration: 1,
-    delay: 3.5
-  });
-
-  gsap.to(".arrow", {
-    y: 8,
-    repeat: -1,
-    yoyo: true,
-    duration: 1
-  });
+  gsap.to(".scroll-indicator", { opacity: 1, delay: 3 });
 
   setTimeout(() => {
     document.body.style.overflow = "auto";
@@ -59,7 +40,7 @@ function playIntroAnimation() {
 }
 
 
-// 🌼 PETALS LOWER START (FIX)
+// 🌼 PETALS FROM TOP
 function startPetals() {
 
   if (petalsStarted) return;
@@ -73,12 +54,12 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "20vh"; // 🔥 starts LOWER
+    petal.style.top = "0vh"; // 🔥 FIXED
 
     container.appendChild(petal);
 
     gsap.to(petal, {
-      y: "120vh",
+      y: "110vh",
       x: "random(-40,40)",
       duration: "random(8,12)",
       repeat: -1,
@@ -91,7 +72,7 @@ function startPetals() {
 }
 
 
-// trigger only on haldi
+// trigger on haldi
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
@@ -105,12 +86,23 @@ gsap.utils.toArray(".title span").forEach(el => {
     clipPath: "inset(0 0% 0 0)",
     opacity: 1,
     duration: 3,
-    ease: "power2.out",
     scrollTrigger: {
       trigger: el,
       start: "top 70%"
     }
   });
+});
+
+
+// ✨ POETRY ANIMATION
+gsap.from(".poetry", {
+  opacity: 0,
+  y: 30,
+  duration: 1.5,
+  scrollTrigger: {
+    trigger: ".poetry",
+    start: "top 80%"
+  }
 });
 
 
@@ -120,7 +112,6 @@ function initScroll() {
   const panels = gsap.utils.toArray(".panel");
 
   panels.forEach((panel) => {
-
     ScrollTrigger.create({
       trigger: panel,
       start: "top top",
@@ -128,7 +119,6 @@ function initScroll() {
       pin: true,
       pinSpacing: false
     });
-
   });
 
 }
