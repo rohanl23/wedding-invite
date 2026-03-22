@@ -21,51 +21,17 @@ body {
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   opacity: 0;
 }
 
+/* GANESH GLOW */
 .ganesh {
   width: 140px;
-  margin-bottom: 18px;
   opacity: 0;
+  filter: drop-shadow(0 0 10px rgba(255,200,0,0.6));
 }
-
-/* SHLOKA */
-.shloka {
-  color: #5a2e12;
-  text-align: center;
-}
-
-.line span {
-  display: inline-block;
-  opacity: 0;
-  clip-path: inset(0 100% 0 0);
-}
-
-/* SCROLL */
-.scroll-indicator {
-  position: absolute;
-  bottom: 90px;
-  width: 100%;
-  text-align: center;
-  color: #5a2e12;
-  opacity: 0;
-}
-
-/* PANELS */
-.panel {
-  height: 100vh;
-  width: 100%;
-  position: relative;
-}
-
-/* BACKGROUNDS */
-.haldi { background: url('./assets/haldi.jpg') center/cover no-repeat; }
-.ring { background: url('./assets/ring.jpg') center/cover no-repeat; }
-.wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
-.thankyou { background: url('./assets/thankyou.jpg') center/cover no-repeat; }
 
 /* TITLE */
 .title {
@@ -75,14 +41,17 @@ body {
   text-align: center;
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
+  font-weight: bold;
   letter-spacing: 2px;
+  opacity: 0;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 .haldi-title { color: #000; }
 .ring-title { color: #fff; }
 .wedding-title { color: #fff; }
 
-/* CONTENT */
+/* HALDI CONTENT */
 .haldi-content {
   position: absolute;
   top: 42%;
@@ -90,45 +59,60 @@ body {
   text-align: center;
 }
 
-/* POETRY */
 .poetry {
-  font-size: 1.1rem;
-  color: #333;
-  line-height: 1.6;
+  opacity: 0;
   margin-bottom: 25px;
 }
 
-/* DATE TIME */
+.datetime-block {
+  opacity: 0;
+  margin-top: 30px;
+}
+
+.label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
 .datetime {
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
   font-weight: bold;
-  color: #000;
 }
 
 /* VENUE */
-.venue {
+.venue-block {
   position: absolute;
   bottom: 15%;
   width: 100%;
   text-align: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  color: #000;
-  text-decoration: underline;
+  opacity: 0;
 }
 
-/* PETALS */
+.venue-block a {
+  font-family: 'Playfair Display', serif;
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* BACKGROUNDS */
+.haldi { background: url('./assets/haldi.jpg') center/cover no-repeat; }
+.ring { background: url('./assets/ring.jpg') center/cover no-repeat; }
+.wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
+
+/* 🔥 PETALS (RESTORED) */
 .petals {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .petal {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background: rgba(255, 204, 0, 0.8);
   border-radius: 50%;
+  opacity: 0.8;
 }
