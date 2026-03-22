@@ -26,19 +26,19 @@ body {
   opacity: 0;
 }
 
-/* ✅ GANESH GLOW ADDED */
+/* GANESH GLOW */
 .ganesh {
   width: 140px;
   margin-bottom: 18px;
   opacity: 0;
-  filter: drop-shadow(0 0 10px rgba(255, 200, 120, 0.6));
+  filter: drop-shadow(0 0 12px rgba(255, 200, 120, 0.7));
 }
 
-/* ✅ SHLOKA UPDATED */
+/* SHLOKA */
 .shloka {
   color: #5a2e12;
   text-align: center;
-  font-size: 1.6rem; /* increased */
+  font-size: 1.6rem;
   line-height: 1.8;
 }
 
@@ -80,6 +80,8 @@ body {
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
   letter-spacing: 2px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
 .haldi-title { color: #000; }
@@ -102,6 +104,18 @@ body {
   margin-bottom: 25px;
 }
 
+/* DATE BLOCK */
+.datetime-block {
+  margin-top: 35px;
+}
+
+.label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
 /* DATE TIME */
 .datetime {
   font-family: 'Playfair Display', serif;
@@ -110,12 +124,16 @@ body {
   color: #000;
 }
 
-/* VENUE */
-.venue {
+/* VENUE BLOCK */
+.venue-block {
   position: absolute;
-  bottom: 15%;
+  bottom: 12%;
   width: 100%;
   text-align: center;
+}
+
+/* VENUE */
+.venue {
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   color: #000;

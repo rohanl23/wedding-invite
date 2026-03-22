@@ -6,14 +6,12 @@ let petalsStarted = false;
 
 // INTRO
 video.addEventListener("timeupdate", () => {
-
   if (!video.duration) return;
 
   if (video.currentTime >= video.duration - 3 && !introDone) {
     introDone = true;
     playIntroAnimation();
   }
-
 });
 
 function playIntroAnimation() {
@@ -37,7 +35,7 @@ function playIntroAnimation() {
   }, 5000);
 }
 
-// 🌼 PETALS
+// PETALS
 function startPetals() {
 
   if (petalsStarted) return;
@@ -51,31 +49,66 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "0vh";
+    petal.style.top = Math.random() * -20 + "vh";
 
     container.appendChild(petal);
 
     gsap.to(petal, {
-      y: "110vh",
+      y: "120vh",
       x: "random(-40,40)",
-      duration: "random(8,12)",
+      duration: "random(6,10)",
       repeat: -1,
       ease: "none",
-      delay: Math.random() * 5
+      delay: Math.random() * 3
     });
 
   }
 
 }
 
-// trigger on haldi
+// HALDI ANIMATION SEQUENCE
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
-  onEnter: startPetals
+  onEnter: () => {
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        document.body.style.overflow = "auto";
+      }
+    });
+
+    document.body.style.overflow = "hidden";
+
+    tl.to(".haldi-title span", {
+      clipPath: "inset(0 0% 0 0)",
+      opacity: 1,
+      duration: 2
+    })
+
+    .from(".haldi .poetry", {
+      opacity: 0,
+      y: 30,
+      duration: 1.5
+    })
+
+    .from(".datetime-block", {
+      opacity: 0,
+      y: 30,
+      duration: 1.2
+    })
+
+    .from(".venue-block", {
+      opacity: 0,
+      y: 30,
+      duration: 1.2
+    });
+
+    startPetals();
+  }
 });
 
-// ✨ TITLES
+// TITLES (other sections)
 gsap.utils.toArray(".title span").forEach(el => {
   gsap.to(el, {
     clipPath: "inset(0 0% 0 0)",
@@ -88,7 +121,7 @@ gsap.utils.toArray(".title span").forEach(el => {
   });
 });
 
-// ✨ POETRY
+// POETRY
 gsap.from(".poetry", {
   opacity: 0,
   y: 30,
