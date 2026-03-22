@@ -44,7 +44,7 @@ function playIntro() {
 }
 
 
-// HALDI SEQUENCE
+// HALDI SEQUENCE (UPDATED TIMING ONLY)
 function playHaldiSequence() {
 
   if (haldiPlayed) return;
@@ -59,9 +59,9 @@ function playHaldiSequence() {
   });
 
   tl.to(".haldi-title", { opacity: 1, duration: 1.5 })
-    .to(".poetry", { opacity: 1, y: -10, duration: 1 }, "+=0.3")
-    .to(".datetime-block", { opacity: 1, y: -10, duration: 1 }, "+=0.3")
-    .to(".venue-block", { opacity: 1, y: -10, duration: 1 }, "+=0.3");
+    .to(".poetry", { opacity: 1, y: -10, duration: 1.2 }, "+=0.4")
+    .to(".datetime-block", { opacity: 1, y: -10, duration: 1.2 }, "+=0.4")
+    .to(".venue-block", { opacity: 1, y: -10, duration: 1.2 }, "+=0.4");
 
 }
 
@@ -74,7 +74,7 @@ ScrollTrigger.create({
 });
 
 
-// PETALS
+// PETALS (ONLY START POSITION FIXED)
 function startPetals() {
 
   const container = document.querySelector(".petals");
@@ -85,7 +85,7 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "0vh";
+    petal.style.top = "5vh"; // ✅ fixed
 
     container.appendChild(petal);
 
