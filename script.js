@@ -111,7 +111,9 @@ ScrollTrigger.create({
       path: "./assets/confetti.json"
     });
 
-    gsap.timeline()
+    const tl = gsap.timeline();
+
+    tl.to(".wedding-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .venue-block", { opacity: 0, y: 20, duration: 1 });
