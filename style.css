@@ -133,6 +133,7 @@ body {
   bottom: 12%;
   width: 100%;
   text-align: center;
+  opacity: 0; /* FIX: ensures fade-in works */
 }
 
 .ring-venue {
@@ -218,11 +219,11 @@ body {
   border-radius: 50%;
 }
 
-/* ===== THANK YOU FINAL FLOW ===== */
+/* ===== THANK YOU FINAL ===== */
 
 .thankyou-logo {
   position: absolute;
-  top: 25%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: 180px;
@@ -235,13 +236,13 @@ body {
   top: 35%;
   width: 100%;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.1; /* reduced spacing */
   opacity: 0;
 }
 
 .thankyou-request {
   position: absolute;
-  top: 50%;
+  top: 60%;
   width: 100%;
   text-align: center;
   opacity: 0;
@@ -249,9 +250,10 @@ body {
 
 .blessings {
   position: absolute;
-  top: 60%;
+  top: 75%;
   width: 100%;
   text-align: center;
+  line-height: 1.2; /* tighter spacing */
   opacity: 0;
 }
 

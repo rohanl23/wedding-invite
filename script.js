@@ -103,13 +103,13 @@ ScrollTrigger.create({
       .to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".haldi .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".datetime-block", { opacity: 0, y: 20, duration: 1 })
-      .from(".venue-block", { opacity: 0, y: 20, duration: 1 });
+      .from(".venue-block", { opacity: 1, y: 20, duration: 1 });
 
     startPetals();
   }
 });
 
-// RING
+// RING (FIXED FADE-IN)
 ScrollTrigger.create({
   trigger: ".ring",
   start: "top 80%",
@@ -118,7 +118,7 @@ ScrollTrigger.create({
       .to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".ring .datetime-block", { opacity: 0, y: 20, duration: 1 })
-      .from(".ring .venue-block", { opacity: 0, y: 20, duration: 1 });
+      .to(".ring .venue-block", { opacity: 1, y: 0, duration: 1 }); // FIX
   }
 });
 
@@ -139,7 +139,7 @@ ScrollTrigger.create({
   }
 });
 
-// THANK YOU FINAL FLOW
+// THANK YOU
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",
