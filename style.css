@@ -25,7 +25,6 @@ body {
   opacity: 0;
 }
 
-/* GANESH */
 .ganesh {
   width: 170px;
   margin-bottom: 18px;
@@ -33,7 +32,6 @@ body {
   filter: drop-shadow(0 0 20px rgba(255, 200, 120, 0.9));
 }
 
-/* SHLOKA */
 .shloka {
   color: #5a2e12;
   text-align: center;
@@ -47,17 +45,16 @@ body {
   clip-path: inset(0 100% 0 0);
 }
 
-/* ✅ SCROLL INDICATOR LOWER */
+/* SCROLL */
 .scroll-indicator {
   position: absolute;
-  bottom: 50px; /* pushed lower */
+  bottom: 50px;
   width: 100%;
   text-align: center;
   color: #5a2e12;
   opacity: 0;
 }
 
-/* ✅ SMALLER ARROW + WIGGLE */
 .arrow {
   width: 14px;
   height: 14px;
@@ -84,7 +81,6 @@ body {
 .wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
 .thankyou { background: url('./assets/thankyou.jpg') center/cover no-repeat; }
 
-/* TITLE */
 .title {
   position: absolute;
   top: 25%;
@@ -108,25 +104,36 @@ body {
   text-align: center;
 }
 
+/* UPDATED */
 .poetry {
   font-size: 1.1rem;
   color: #333;
   line-height: 1.6;
   margin-bottom: 25px;
+  font-style: italic;
+  font-weight: normal;
 }
 
-/* ✅ BETTER BALANCED SPACING */
 .datetime-block {
   margin-top: 60px;
-  font-weight: bold;
 }
 
-.label,
-.datetime,
-.venue {
+.label {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
   color: #000;
+}
+
+.datetime-block .label {
+  font-weight: bold;
+}
+
+/* UPDATED */
+.datetime {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #000;
+  font-weight: normal;
 }
 
 .venue-block {
@@ -141,15 +148,12 @@ body {
 }
 
 .venue {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #000;
   text-decoration: underline;
 }
 
-/* ✅ DATE LABEL BOLD */
-.datetime-block .label {
-  font-weight: bold;
-}
-
-/* PETALS */
 .petals {
   position: absolute;
   inset: 0;

@@ -4,10 +4,7 @@ const video = document.getElementById("introVideo");
 let introDone = false;
 let petalsStarted = false;
 
-// 🔒 LOCK SCROLL INITIALLY
-document.body.style.overflow = "hidden";
-
-// INTRO
+// INTRO (NO SCROLL LOCK NOW)
 video.addEventListener("timeupdate", () => {
   if (!video.duration) return;
 
@@ -21,17 +18,15 @@ function playIntroAnimation() {
 
   const tl = gsap.timeline({
     onComplete: () => {
-      document.body.style.overflow = "auto"; // ✅ unlock after intro
+      document.body.style.overflow = "auto";
       initScroll();
     }
   });
 
   tl.to(".overlay", { opacity: 1, duration: 1.2 })
 
-    // ✅ GANESH FIRST
     .to(".ganesh", { opacity: 1, duration: 1.2 })
 
-    // ✅ SHLOKA AFTER
     .to(".line span", {
       clipPath: "inset(0 0% 0 0)",
       opacity: 1,
@@ -41,7 +36,6 @@ function playIntroAnimation() {
 
     .to(".scroll-indicator", { opacity: 1, duration: 1 }, "-=0.5");
 }
-
 
 // PETALS
 function startPetals() {
@@ -74,18 +68,17 @@ function startPetals() {
 
 }
 
-
-// 🔒 HALDI SCROLL LOCK
+// HALDI LOCK (UNCHANGED)
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
   onEnter: () => {
 
-    document.body.style.overflow = "hidden"; // lock
+    document.body.style.overflow = "hidden";
 
     const tl = gsap.timeline({
       onComplete: () => {
-        document.body.style.overflow = "auto"; // unlock
+        document.body.style.overflow = "auto";
       }
     });
 
@@ -112,10 +105,9 @@ ScrollTrigger.create({
       duration: 1
     });
 
-    startPetals(); // not part of lock
+    startPetals();
   }
 });
-
 
 // TITLES
 gsap.utils.toArray(".title span").forEach(el => {
