@@ -45,7 +45,7 @@ body {
   clip-path: inset(0 100% 0 0);
 }
 
-/* SCROLL */
+/* Scroll */
 .scroll-indicator {
   position: absolute;
   bottom: 50px;
@@ -104,16 +104,16 @@ body {
   text-align: center;
 }
 
-/* UPDATED */
+/* Poetry */
 .poetry {
   font-size: 1.1rem;
   color: #333;
   line-height: 1.6;
   margin-bottom: 25px;
   font-style: italic;
-  font-weight: normal;
 }
 
+/* Date block */
 .datetime-block {
   margin-top: 60px;
 }
@@ -122,18 +122,13 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
   color: #000;
-}
-
-.datetime-block .label {
   font-weight: bold;
 }
 
-/* UPDATED */
 .datetime {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
   color: #000;
-  font-weight: normal;
 }
 
 .venue-block {
@@ -143,10 +138,6 @@ body {
   text-align: center;
 }
 
-.venue-block .label {
-  font-weight: bold;
-}
-
 .venue {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
@@ -154,6 +145,7 @@ body {
   text-decoration: underline;
 }
 
+/* Petals */
 .petals {
   position: absolute;
   inset: 0;

@@ -4,7 +4,7 @@ const video = document.getElementById("introVideo");
 let introDone = false;
 let petalsStarted = false;
 
-// INTRO (NO SCROLL LOCK NOW)
+// INTRO
 video.addEventListener("timeupdate", () => {
   if (!video.duration) return;
 
@@ -24,29 +24,24 @@ function playIntroAnimation() {
   });
 
   tl.to(".overlay", { opacity: 1, duration: 1.2 })
-
     .to(".ganesh", { opacity: 1, duration: 1.2 })
-
     .to(".line span", {
       clipPath: "inset(0 0% 0 0)",
       opacity: 1,
       stagger: 0.6,
       duration: 1.5
     })
-
-    .to(".scroll-indicator", { opacity: 1, duration: 1 }, "-=0.5");
+    .to(".scroll-indicator", { opacity: 1 }, "-=0.5");
 }
 
 // PETALS
 function startPetals() {
-
   if (petalsStarted) return;
   petalsStarted = true;
 
   const container = document.querySelector(".petals");
 
   for (let i = 0; i < 15; i++) {
-
     const petal = document.createElement("div");
     petal.classList.add("petal");
 
@@ -63,53 +58,46 @@ function startPetals() {
       ease: "none",
       delay: Math.random() * 2
     });
-
   }
-
 }
 
-// HALDI LOCK (UNCHANGED)
+// HALDI
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
   onEnter: () => {
-
-    document.body.style.overflow = "hidden";
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        document.body.style.overflow = "auto";
-      }
-    });
-
-    tl.to(".haldi-title span", {
-      clipPath: "inset(0 0% 0 0)",
-      opacity: 1,
-      duration: 2
-    })
-
-    .from(".haldi .poetry", {
-      opacity: 0,
-      duration: 1.2
-    })
-
-    .from(".datetime-block", {
-      opacity: 0,
-      y: 20,
-      duration: 1
-    })
-
-    .from(".venue-block", {
-      opacity: 0,
-      y: 20,
-      duration: 1
-    });
+    gsap.timeline()
+      .to(".haldi-title span", {
+        clipPath: "inset(0 0% 0 0)",
+        opacity: 1,
+        duration: 2
+      })
+      .from(".haldi .poetry", { opacity: 0, duration: 1.2 })
+      .from(".datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".venue-block", { opacity: 0, y: 20, duration: 1 });
 
     startPetals();
   }
 });
 
-// TITLES
+// RING
+ScrollTrigger.create({
+  trigger: ".ring",
+  start: "top 80%",
+  onEnter: () => {
+    gsap.timeline()
+      .to(".ring-title span", {
+        clipPath: "inset(0 0% 0 0)",
+        opacity: 1,
+        duration: 2
+      })
+      .from(".ring .poetry", { opacity: 0, duration: 1.2 })
+      .from(".ring .datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".ring .venue-block", { opacity: 0, y: 20, duration: 1 });
+  }
+});
+
+// TITLES GLOBAL
 gsap.utils.toArray(".title span").forEach(el => {
   gsap.to(el, {
     clipPath: "inset(0 0% 0 0)",
@@ -124,10 +112,9 @@ gsap.utils.toArray(".title span").forEach(el => {
 
 // PIN
 function initScroll() {
-
   const panels = gsap.utils.toArray(".panel");
 
-  panels.forEach((panel) => {
+  panels.forEach(panel => {
     ScrollTrigger.create({
       trigger: panel,
       start: "top top",
@@ -136,5 +123,4 @@ function initScroll() {
       pinSpacing: false
     });
   });
-
 }
