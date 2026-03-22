@@ -193,3 +193,9 @@ function initScroll() {
     });
   });
 }
+
+document.addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  }
+}, { once: true });
