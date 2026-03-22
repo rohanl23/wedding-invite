@@ -34,6 +34,7 @@ function playIntroAnimation() {
     .to(".scroll-indicator", { opacity: 1 }, "-=0.5");
 }
 
+
 // PETALS
 function startPetals() {
   if (petalsStarted) return;
@@ -61,7 +62,8 @@ function startPetals() {
   }
 }
 
-// HALDI
+
+// HALDI (UPDATED POETRY FADE)
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
@@ -72,7 +74,7 @@ ScrollTrigger.create({
         opacity: 1,
         duration: 2
       })
-      .from(".haldi .poetry", { opacity: 0, duration: 1.2 })
+      .from(".haldi .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".datetime-block", { opacity: 0, y: 20, duration: 1 })
       .from(".venue-block", { opacity: 0, y: 20, duration: 1 });
 
@@ -80,35 +82,52 @@ ScrollTrigger.create({
   }
 });
 
-// RING
+
+// RING (WITH SPARKLES)
 ScrollTrigger.create({
   trigger: ".ring",
   start: "top 80%",
   onEnter: () => {
+
+    // sparkles animation
+    lottie.loadAnimation({
+      container: document.getElementById("sparkles"),
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "./assets/sparkles.json"
+    });
+
     gsap.timeline()
       .to(".ring-title span", {
         clipPath: "inset(0 0% 0 0)",
         opacity: 1,
         duration: 2
       })
-      .from(".ring .poetry", { opacity: 0, duration: 1.2 })
+      .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".ring .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .from(".ring .venue-block", { opacity: 0, y: 20, duration: 1 });
+
   }
 });
 
-// TITLES GLOBAL
+
+// GLOBAL TITLES (CONSISTENT)
 gsap.utils.toArray(".title span").forEach(el => {
+  gsap.set(el, { clipPath: "inset(0 100% 0 0)", opacity: 0 });
+
   gsap.to(el, {
     clipPath: "inset(0 0% 0 0)",
     opacity: 1,
-    duration: 3,
+    duration: 2,
+    ease: "power2.out",
     scrollTrigger: {
       trigger: el,
-      start: "top 70%"
+      start: "top 75%"
     }
   });
 });
+
 
 // PIN
 function initScroll() {

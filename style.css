@@ -159,3 +159,20 @@ body {
   background: rgba(255, 204, 0, 0.8);
   border-radius: 50%;
 }
+
+/* ADD SPARKLES */
+#sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* RING TEXT WHITE */
+.ring .title,
+.ring .poetry,
+.ring .label,
+.ring .datetime,
+.ring .venue {
+  color: #fff;
+}
