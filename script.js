@@ -1,10 +1,33 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
+
 let introDone = false;
 let petalsStarted = false;
 
-// INTRO
+/* ========================= */
+/* SCROLL LOCK SYSTEM */
+/* ========================= */
+
+let scrollLocked = true;
+
+function lockScroll() {
+  document.body.style.overflow = "hidden";
+  scrollLocked = true;
+}
+
+function unlockScroll() {
+  document.body.style.overflow = "auto";
+  scrollLocked = false;
+}
+
+/* Start locked */
+lockScroll();
+
+/* ========================= */
+/* INTRO */
+/* ========================= */
+
 video.addEventListener("timeupdate", () => {
   if (!video.duration) return;
 
@@ -17,7 +40,7 @@ video.addEventListener("timeupdate", () => {
 function playIntroAnimation() {
   const tl = gsap.timeline({
     onComplete: () => {
-      document.body.style.overflow = "auto";
+      unlockScroll(); // 🔓 unlock AFTER shloka + arrow
       initScroll();
     }
   });
@@ -33,7 +56,10 @@ function playIntroAnimation() {
     .to(".scroll-indicator", { opacity: 1 }, "-=0.5");
 }
 
-// PETALS
+/* ========================= */
+/* PETALS */
+/* ========================= */
+
 function startPetals() {
   if (petalsStarted) return;
   petalsStarted = true;
@@ -45,8 +71,6 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "0vh";
-
     container.appendChild(petal);
 
     gsap.to(petal, {
@@ -54,13 +78,15 @@ function startPetals() {
       x: "random(-40,40)",
       duration: "random(6,10)",
       repeat: -1,
-      ease: "none",
-      delay: Math.random() * 2
+      ease: "none"
     });
   }
 }
 
-// CONFETTI
+/* ========================= */
+/* CONFETTI */
+/* ========================= */
+
 function startConfetti() {
   const container = document.querySelector(".confetti-container");
 
@@ -79,13 +105,15 @@ function startConfetti() {
       rotation: 360,
       duration: "random(4,7)",
       repeat: -1,
-      ease: "none",
-      delay: Math.random() * 2
+      ease: "none"
     });
   }
 }
 
-// SPARKLES
+/* ========================= */
+/* SPARKLES */
+/* ========================= */
+
 lottie.loadAnimation({
   container: document.getElementById("sparkles"),
   renderer: "svg",
@@ -94,55 +122,85 @@ lottie.loadAnimation({
   path: "./assets/sparkles.json"
 });
 
-// HALDI FIX
+/* ========================= */
+/* HALDI (LOCKED) */
+/* ========================= */
+
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
   onEnter: () => {
-    gsap.timeline()
-      .to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+
+    lockScroll(); // 🔒 lock
+
+    const tl = gsap.timeline({
+      onComplete: () => unlockScroll() // 🔓 unlock AFTER venue
+    });
+
+    tl.to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".haldi .poetry", { opacity: 0, y: 20, duration: 1 })
-      .from(".datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".haldi .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .to(".haldi .venue-block", { opacity: 1, y: 0, duration: 1 });
 
     startPetals();
   }
 });
 
-// RING (already correct)
+/* ========================= */
+/* RING (LOCKED) */
+/* ========================= */
+
 ScrollTrigger.create({
   trigger: ".ring",
   start: "top 80%",
   onEnter: () => {
-    gsap.timeline()
-      .to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+
+    lockScroll();
+
+    const tl = gsap.timeline({
+      onComplete: () => unlockScroll()
+    });
+
+    tl.to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".ring .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .to(".ring .venue-block", { opacity: 1, y: 0, duration: 1 });
   }
 });
 
-// WEDDING FIX
+/* ========================= */
+/* WEDDING (LOCKED) */
+/* ========================= */
+
 ScrollTrigger.create({
   trigger: ".wedding",
   start: "top 80%",
   onEnter: () => {
 
+    lockScroll();
+
     startConfetti();
 
-    gsap.timeline()
-      .to(".wedding-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+    const tl = gsap.timeline({
+      onComplete: () => unlockScroll()
+    });
+
+    tl.to(".wedding-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .to(".wedding .venue-block", { opacity: 1, y: 0, duration: 1 });
   }
 });
 
-// THANK YOU (circular reveal + shimmer)
+/* ========================= */
+/* THANK YOU */
+/* ========================= */
+
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",
   onEnter: () => {
+
     const tl = gsap.timeline();
 
     tl.to(".thankyou-logo", {
@@ -163,7 +221,10 @@ ScrollTrigger.create({
   }
 });
 
-// GLOBAL TITLES
+/* ========================= */
+/* GLOBAL TITLES */
+/* ========================= */
+
 gsap.utils.toArray(".title span").forEach(el => {
   gsap.set(el, { clipPath: "inset(0 100% 0 0)", opacity: 0 });
 
@@ -179,7 +240,10 @@ gsap.utils.toArray(".title span").forEach(el => {
   });
 });
 
-// PIN
+/* ========================= */
+/* PIN */
+/* ========================= */
+
 function initScroll() {
   const panels = gsap.utils.toArray(".panel");
 
