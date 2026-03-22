@@ -1,14 +1,10 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
-
 let introDone = false;
 let petalsStarted = false;
 
-/* ========================= */
-/* INTRO */
-/* ========================= */
-
+// INTRO
 video.addEventListener("timeupdate", () => {
   if (!video.duration) return;
 
@@ -21,7 +17,8 @@ video.addEventListener("timeupdate", () => {
 function playIntroAnimation() {
   const tl = gsap.timeline({
     onComplete: () => {
-      initScroll(); // initialize snapping AFTER intro
+      document.body.style.overflow = "auto";
+      initScroll();
     }
   });
 
@@ -36,10 +33,7 @@ function playIntroAnimation() {
     .to(".scroll-indicator", { opacity: 1 }, "-=0.5");
 }
 
-/* ========================= */
-/* PETALS */
-/* ========================= */
-
+// PETALS
 function startPetals() {
   if (petalsStarted) return;
   petalsStarted = true;
@@ -51,6 +45,8 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
+    petal.style.top = "0vh";
+
     container.appendChild(petal);
 
     gsap.to(petal, {
@@ -58,15 +54,13 @@ function startPetals() {
       x: "random(-40,40)",
       duration: "random(6,10)",
       repeat: -1,
-      ease: "none"
+      ease: "none",
+      delay: Math.random() * 2
     });
   }
 }
 
-/* ========================= */
-/* CONFETTI */
-/* ========================= */
-
+// CONFETTI
 function startConfetti() {
   const container = document.querySelector(".confetti-container");
 
@@ -85,15 +79,13 @@ function startConfetti() {
       rotation: 360,
       duration: "random(4,7)",
       repeat: -1,
-      ease: "none"
+      ease: "none",
+      delay: Math.random() * 2
     });
   }
 }
 
-/* ========================= */
-/* SPARKLES */
-/* ========================= */
-
+// SPARKLES
 lottie.loadAnimation({
   container: document.getElementById("sparkles"),
   renderer: "svg",
@@ -102,34 +94,26 @@ lottie.loadAnimation({
   path: "./assets/sparkles.json"
 });
 
-/* ========================= */
-/* HALDI */
-/* ========================= */
-
+// HALDI FIX
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
   onEnter: () => {
-
     gsap.timeline()
       .to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".haldi .poetry", { opacity: 0, y: 20, duration: 1 })
-      .from(".haldi .datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".datetime-block", { opacity: 0, y: 20, duration: 1 })
       .to(".haldi .venue-block", { opacity: 1, y: 0, duration: 1 });
 
     startPetals();
   }
 });
 
-/* ========================= */
-/* RING */
-/* ========================= */
-
+// RING (already correct)
 ScrollTrigger.create({
   trigger: ".ring",
   start: "top 80%",
   onEnter: () => {
-
     gsap.timeline()
       .to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
@@ -138,10 +122,7 @@ ScrollTrigger.create({
   }
 });
 
-/* ========================= */
-/* WEDDING */
-/* ========================= */
-
+// WEDDING FIX
 ScrollTrigger.create({
   trigger: ".wedding",
   start: "top 80%",
@@ -157,15 +138,11 @@ ScrollTrigger.create({
   }
 });
 
-/* ========================= */
-/* THANK YOU */
-/* ========================= */
-
+// THANK YOU (circular reveal + shimmer)
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",
   onEnter: () => {
-
     const tl = gsap.timeline();
 
     tl.to(".thankyou-logo", {
@@ -186,10 +163,7 @@ ScrollTrigger.create({
   }
 });
 
-/* ========================= */
-/* GLOBAL TITLES */
-/* ========================= */
-
+// GLOBAL TITLES
 gsap.utils.toArray(".title span").forEach(el => {
   gsap.set(el, { clipPath: "inset(0 100% 0 0)", opacity: 0 });
 
@@ -205,12 +179,8 @@ gsap.utils.toArray(".title span").forEach(el => {
   });
 });
 
-/* ========================= */
-/* SNAP SCROLL (🔥 NEW) */
-/* ========================= */
-
+// PIN
 function initScroll() {
-
   const panels = gsap.utils.toArray(".panel");
 
   panels.forEach(panel => {
@@ -221,15 +191,5 @@ function initScroll() {
       pin: true,
       pinSpacing: false
     });
-  });
-
-  // 🔥 SNAP WITH INERTIA
-  ScrollTrigger.create({
-    snap: {
-      snapTo: 1 / (panels.length - 1),
-      duration: { min: 0.3, max: 0.8 },
-      delay: 0.1,
-      ease: "power2.inOut"
-    }
   });
 }
