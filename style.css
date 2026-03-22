@@ -245,3 +245,24 @@ body {
   clip-path: circle(0% at 50% 50%);
   filter: drop-shadow(0 0 0px rgba(255,255,255,0));
 }
+
+/* Remove bold effect */
+.no-bold {
+  font-weight: normal;
+}
+
+/* Add spacing before request line */
+.spaced-text {
+  margin-top: 20px;
+}
+
+/* Update "Can't wait" line */
+.thankyou-line {
+  font-weight: bold;
+  font-size: 1.1rem; /* slightly reduced */
+}
+
+/* Scale logo slightly up */
+.thankyou-logo {
+  width: 140px; /* increased from 120px */
+}
