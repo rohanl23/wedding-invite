@@ -45,6 +45,7 @@ body {
   clip-path: inset(0 100% 0 0);
 }
 
+/* Scroll indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 70px;
@@ -87,7 +88,9 @@ body {
   text-align: center;
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
+  letter-spacing: 2px;
   font-weight: bold;
+  text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
 .haldi-title { color: #000; }
@@ -104,6 +107,8 @@ body {
 .poetry {
   font-size: 1.1rem;
   color: #333;
+  line-height: 1.6;
+  margin-bottom: 25px;
   font-style: italic;
 }
 
@@ -112,8 +117,16 @@ body {
 }
 
 .label {
-  font-family: 'Playfair Display';
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
   font-weight: bold;
+  color: #000;
+}
+
+.datetime {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #000;
 }
 
 .venue-block {
@@ -124,11 +137,18 @@ body {
 }
 
 .venue {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
   text-decoration: underline;
+  color: #000;
 }
 
 /* Ring white */
-.ring * {
+.ring .title,
+.ring .poetry,
+.ring .label,
+.ring .datetime,
+.ring .venue {
   color: #fff;
 }
 
@@ -138,54 +158,47 @@ body {
   inset: 0;
   opacity: 0.5;
   transform: scale(0.8);
+  pointer-events: none;
 }
 
-/* Wedding subtitle shimmer */
+/* Wedding subtitle */
 .wedding-subtitle {
   position: absolute;
   top: 40%;
   width: 100%;
   text-align: center;
-
-  font-family: 'Cinzel', serif;
-  font-size: 2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
   font-weight: bold;
-  letter-spacing: 2px;
-
-  background: linear-gradient(90deg, #fff, #f5d78e, #fff);
-  background-size: 200%;
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  animation: shimmer 3s linear infinite;
+  color: #fff;
+  white-space: nowrap;
 }
 
-@keyframes shimmer {
-  0% { background-position: -200%; }
-  100% { background-position: 200%; }
-}
-
+/* Wedding white text */
 .wedding .label,
 .wedding .datetime,
 .wedding .venue {
   color: #fff;
 }
 
+/* Wedding venue position */
 .wedding-venue {
   top: 60%;
   bottom: auto;
 }
 
+/* Petals */
 .petals {
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 
 .petal {
   position: absolute;
   width: 10px;
   height: 10px;
-  background: yellow;
+  background: rgba(255, 204, 0, 0.8);
   border-radius: 50%;
 }

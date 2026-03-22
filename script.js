@@ -2,7 +2,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const video = document.getElementById("introVideo");
 let introDone = false;
+let petalsStarted = false;
 
+// INTRO
 video.addEventListener("timeupdate", () => {
   if (!video.duration) return;
 
@@ -13,33 +15,73 @@ video.addEventListener("timeupdate", () => {
 });
 
 function playIntroAnimation() {
-  gsap.timeline({
+
+  const tl = gsap.timeline({
     onComplete: () => {
       document.body.style.overflow = "auto";
       initScroll();
     }
-  })
-  .to(".overlay", { opacity: 1 })
-  .to(".ganesh", { opacity: 1 })
-  .to(".line span", { opacity: 1, stagger: 0.5 })
-  .to(".scroll-indicator", { opacity: 1 });
+  });
+
+  tl.to(".overlay", { opacity: 1, duration: 1.2 })
+    .to(".ganesh", { opacity: 1, duration: 1.2 })
+    .to(".line span", {
+      clipPath: "inset(0 0% 0 0)",
+      opacity: 1,
+      stagger: 0.6,
+      duration: 1.5
+    })
+    .to(".scroll-indicator", { opacity: 1 }, "-=0.5");
 }
 
-// Haldi
+// PETALS
+function startPetals() {
+  if (petalsStarted) return;
+  petalsStarted = true;
+
+  const container = document.querySelector(".petals");
+
+  for (let i = 0; i < 15; i++) {
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+
+    petal.style.left = Math.random() * 100 + "%";
+    petal.style.top = "0vh";
+
+    container.appendChild(petal);
+
+    gsap.to(petal, {
+      y: "120vh",
+      x: "random(-40,40)",
+      duration: "random(6,10)",
+      repeat: -1,
+      ease: "none",
+      delay: Math.random() * 2
+    });
+  }
+}
+
+// HALDI
 ScrollTrigger.create({
   trigger: ".haldi",
+  start: "top 80%",
   onEnter: () => {
     gsap.timeline()
-      .from(".haldi .poetry", { opacity: 0 })
-      .from(".datetime-block", { opacity: 0 })
-      .from(".venue-block", { opacity: 0 });
+      .to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+      .from(".haldi .poetry", { opacity: 0, y: 20, duration: 1 })
+      .from(".datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".venue-block", { opacity: 0, y: 20, duration: 1 });
+
+    startPetals();
   }
 });
 
-// Ring
+// RING
 ScrollTrigger.create({
   trigger: ".ring",
+  start: "top 80%",
   onEnter: () => {
+
     lottie.loadAnimation({
       container: document.getElementById("sparkles"),
       renderer: "svg",
@@ -49,23 +91,52 @@ ScrollTrigger.create({
     });
 
     gsap.timeline()
-      .from(".ring .poetry", { opacity: 0 })
-      .from(".ring .datetime-block", { opacity: 0 })
-      .from(".ring .venue-block", { opacity: 0 });
+      .to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+      .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
+      .from(".ring .datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".ring .venue-block", { opacity: 0, y: 20, duration: 1 });
   }
 });
 
-// Wedding
+// WEDDING
 ScrollTrigger.create({
   trigger: ".wedding",
+  start: "top 80%",
   onEnter: () => {
     gsap.timeline()
-      .from(".wedding-subtitle", { opacity: 0 })
-      .from(".wedding .datetime-block", { opacity: 0 })
-      .from(".wedding .venue-block", { opacity: 0 });
+      .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
+      .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".wedding .venue-block", { opacity: 0, y: 20, duration: 1 });
   }
 });
 
+// GLOBAL TITLES
+gsap.utils.toArray(".title span").forEach(el => {
+  gsap.set(el, { clipPath: "inset(0 100% 0 0)", opacity: 0 });
+
+  gsap.to(el, {
+    clipPath: "inset(0 0% 0 0)",
+    opacity: 1,
+    duration: 2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: el,
+      start: "top 75%"
+    }
+  });
+});
+
+// PIN
 function initScroll() {
-  document.body.style.overflow = "auto";
+  const panels = gsap.utils.toArray(".panel");
+
+  panels.forEach(panel => {
+    ScrollTrigger.create({
+      trigger: panel,
+      start: "top top",
+      end: "+=100%",
+      pin: true,
+      pinSpacing: false
+    });
+  });
 }
