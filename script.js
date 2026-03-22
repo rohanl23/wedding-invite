@@ -6,19 +6,31 @@ let introDone = false;
 let petalsStarted = false;
 
 /* ========================= */
-/* SCROLL LOCK SYSTEM */
+/* ROBUST SCROLL LOCK */
 /* ========================= */
 
 let scrollLocked = true;
 
+function preventScroll(e) {
+  e.preventDefault();
+}
+
 function lockScroll() {
-  document.body.style.overflow = "hidden";
   scrollLocked = true;
+
+  document.body.style.overflow = "hidden";
+
+  window.addEventListener("wheel", preventScroll, { passive: false });
+  window.addEventListener("touchmove", preventScroll, { passive: false });
 }
 
 function unlockScroll() {
-  document.body.style.overflow = "auto";
   scrollLocked = false;
+
+  document.body.style.overflow = "auto";
+
+  window.removeEventListener("wheel", preventScroll, { passive: false });
+  window.removeEventListener("touchmove", preventScroll, { passive: false });
 }
 
 /* Start locked */
@@ -40,7 +52,7 @@ video.addEventListener("timeupdate", () => {
 function playIntroAnimation() {
   const tl = gsap.timeline({
     onComplete: () => {
-      unlockScroll(); // 🔓 unlock AFTER shloka + arrow
+      unlockScroll(); // unlock AFTER intro finishes
       initScroll();
     }
   });
@@ -128,13 +140,13 @@ lottie.loadAnimation({
 
 ScrollTrigger.create({
   trigger: ".haldi",
-  start: "top 80%",
+  start: "top top",
   onEnter: () => {
 
-    lockScroll(); // 🔒 lock
+    lockScroll();
 
     const tl = gsap.timeline({
-      onComplete: () => unlockScroll() // 🔓 unlock AFTER venue
+      onComplete: () => unlockScroll()
     });
 
     tl.to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
@@ -152,7 +164,7 @@ ScrollTrigger.create({
 
 ScrollTrigger.create({
   trigger: ".ring",
-  start: "top 80%",
+  start: "top top",
   onEnter: () => {
 
     lockScroll();
@@ -174,7 +186,7 @@ ScrollTrigger.create({
 
 ScrollTrigger.create({
   trigger: ".wedding",
-  start: "top 80%",
+  start: "top top",
   onEnter: () => {
 
     lockScroll();
@@ -198,7 +210,7 @@ ScrollTrigger.create({
 
 ScrollTrigger.create({
   trigger: ".thankyou",
-  start: "top 80%",
+  start: "top top",
   onEnter: () => {
 
     const tl = gsap.timeline();
