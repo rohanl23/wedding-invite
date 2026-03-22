@@ -130,13 +130,15 @@ ScrollTrigger.create({
   }
 });
 
-// THANK YOU
+// REPLACE ONLY THANK YOU BLOCK
+
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",
   onEnter: () => {
-    gsap.timeline()
-      .from(".thankyou-poetry p", {
+    const tl = gsap.timeline();
+
+    tl.from(".thankyou-poetry p", {
         opacity: 0,
         y: 20,
         stagger: 0.4,
@@ -146,6 +148,20 @@ ScrollTrigger.create({
         opacity: 0,
         y: 20,
         duration: 1
+      })
+      .to(".thankyou-logo", {
+        opacity: 1,
+        clipPath: "circle(75% at 50% 50%)",
+        duration: 1.2,
+        ease: "power2.out"
+      })
+      .to(".thankyou-logo", {
+        filter: "drop-shadow(0 0 15px rgba(255,255,255,0.8))",
+        scale: 1.05,
+        duration: 1.5,
+        yoyo: true,
+        repeat: -1,
+        ease: "power1.inOut"
       });
   }
 });

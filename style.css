@@ -78,7 +78,7 @@ body {
 .haldi { background: url('./assets/haldi.jpg') center/cover no-repeat; }
 .ring { background: url('./assets/ring.jpg') center/cover no-repeat; }
 .wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
-.thankyou { background: #fff; }
+.thankyou { background: url('./assets/thankyou.jpg') center/cover no-repeat; }
 
 .title {
   position: absolute;
@@ -235,4 +235,13 @@ body {
   height: 10px;
   background: rgba(255, 204, 0, 0.8);
   border-radius: 50%;
+}
+
+/* ADD THIS AT BOTTOM */
+.thankyou-logo {
+  margin-top: 40px;
+  width: 120px;
+  opacity: 0;
+  clip-path: circle(0% at 50% 50%);
+  filter: drop-shadow(0 0 0px rgba(255,255,255,0));
 }
