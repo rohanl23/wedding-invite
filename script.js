@@ -4,7 +4,7 @@ const video = document.getElementById("introVideo");
 let introDone = false;
 let petalsStarted = false;
 
-/* INTRO */
+// INTRO
 video.addEventListener("timeupdate", () => {
   if (!video.duration) return;
 
@@ -22,17 +22,18 @@ function playIntroAnimation() {
     }
   });
 
-  tl.to(".overlay", { opacity: 1 })
-    .to(".ganesh", { opacity: 1 })
+  tl.to(".overlay", { opacity: 1, duration: 1.2 })
+    .to(".ganesh", { opacity: 1, duration: 1.2 })
     .to(".line span", {
       clipPath: "inset(0 0% 0 0)",
       opacity: 1,
-      stagger: 0.5
+      stagger: 0.6,
+      duration: 1.5
     })
-    .to(".scroll-indicator", { opacity: 1 });
+    .to(".scroll-indicator", { opacity: 1 }, "-=0.5");
 }
 
-/* PETALS */
+// PETALS
 function startPetals() {
   if (petalsStarted) return;
   petalsStarted = true;
@@ -44,6 +45,7 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
+    petal.style.top = "0vh";
 
     container.appendChild(petal);
 
@@ -51,12 +53,14 @@ function startPetals() {
       y: "120vh",
       x: "random(-40,40)",
       duration: "random(6,10)",
-      repeat: -1
+      repeat: -1,
+      ease: "none",
+      delay: Math.random() * 2
     });
   }
 }
 
-/* CONFETTI */
+// CONFETTI
 function startConfetti() {
   const container = document.querySelector(".confetti-container");
 
@@ -65,7 +69,7 @@ function startConfetti() {
     c.classList.add("confetti");
 
     c.style.left = Math.random() * 100 + "%";
-    c.style.background = ["#FFD700", "#fff", "#ff69b4"][Math.floor(Math.random()*3)];
+    c.style.background = ["#FFD700", "#FF69B4", "#FFFFFF"][Math.floor(Math.random()*3)];
 
     container.appendChild(c);
 
@@ -74,81 +78,70 @@ function startConfetti() {
       x: "random(-100,100)",
       rotation: 360,
       duration: "random(4,7)",
-      repeat: -1
+      repeat: -1,
+      ease: "none",
+      delay: Math.random() * 2
     });
   }
 }
 
-/* HALDI */
+// HALDI
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
   onEnter: () => {
     gsap.timeline()
-      .to(".haldi-title span", { opacity: 1 })
-      .from(".haldi .poetry", { opacity: 0 })
-      .from(".datetime-block", { opacity: 0 })
-      .from(".venue-block", { opacity: 0 });
+      .to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+      .from(".haldi .poetry", { opacity: 0, y: 20, duration: 1 })
+      .from(".datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".venue-block", { opacity: 0, y: 20, duration: 1 });
 
     startPetals();
   }
 });
 
-/* RING */
+// RING
 ScrollTrigger.create({
   trigger: ".ring",
   start: "top 80%",
   onEnter: () => {
-
-    // RESTORE SPARKLES
-    lottie.loadAnimation({
-      container: document.getElementById("sparkles"),
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      path: "./assets/sparkles.json"
-    });
-
     gsap.timeline()
-      .to(".ring-title span", { opacity: 1 })
-      .from(".ring .poetry", { opacity: 0 })
-      .from(".ring .datetime-block", { opacity: 0 })
-      .from(".ring .venue-block", { opacity: 0 });
+      .to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+      .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
+      .from(".ring .datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".ring .venue-block", { opacity: 0, y: 20, duration: 1 });
   }
 });
 
-/* WEDDING */
+// WEDDING
 ScrollTrigger.create({
   trigger: ".wedding",
   start: "top 80%",
   onEnter: () => {
+
     startConfetti();
 
-    gsap.timeline()
-      .to(".wedding-title span", { opacity: 1 })
-      .from(".wedding-subtitle", { opacity: 0 })
-      .from(".wedding .datetime-block", { opacity: 0 })
-      .from(".wedding .venue-block", { opacity: 0 });
+    const tl = gsap.timeline();
+
+    tl.to(".wedding-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+      .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
+      .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
+      .from(".wedding .venue-block", { opacity: 0, y: 20, duration: 1 });
   }
 });
 
-/* THANK YOU */
+// REPLACE ONLY THANK YOU BLOCK
+
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",
   onEnter: () => {
-
     const tl = gsap.timeline();
 
-    tl.from(".names", {
+    tl.from(".thankyou-poetry p", {
         opacity: 0,
         y: 20,
-        duration: 1,
-        stagger: 0.2
-      })
-      .from(".spaced-text", {
-        opacity: 0,
-        y: 20,
+        stagger: 0.4,
         duration: 1
       })
       .from(".thankyou-line", {
@@ -158,21 +151,38 @@ ScrollTrigger.create({
       })
       .to(".thankyou-logo", {
         opacity: 1,
-        clipPath: "circle(75%)",
-        duration: 1.2
+        clipPath: "circle(75% at 50% 50%)",
+        duration: 1.2,
+        ease: "power2.out"
       })
       .to(".thankyou-logo", {
+        filter: "drop-shadow(0 0 15px rgba(255,255,255,0.8))",
         scale: 1.05,
-        filter: "drop-shadow(0 0 15px white)",
+        duration: 1.5,
         yoyo: true,
         repeat: -1,
-        duration: 1.5
+        ease: "power1.inOut"
       });
-
   }
 });
 
-/* PIN */
+// GLOBAL TITLES
+gsap.utils.toArray(".title span").forEach(el => {
+  gsap.set(el, { clipPath: "inset(0 100% 0 0)", opacity: 0 });
+
+  gsap.to(el, {
+    clipPath: "inset(0 0% 0 0)",
+    opacity: 1,
+    duration: 2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: el,
+      start: "top 75%"
+    }
+  });
+});
+
+// PIN
 function initScroll() {
   const panels = gsap.utils.toArray(".panel");
 
