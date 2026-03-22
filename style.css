@@ -4,7 +4,6 @@ body {
   font-family: 'Yatra One', serif;
 }
 
-/* INTRO */
 .intro {
   position: relative;
   height: 100vh;
@@ -26,9 +25,9 @@ body {
   opacity: 0;
 }
 
-/* GANESH GLOW */
+/* ✅ GANESH SIZE INCREASED */
 .ganesh {
-  width: 140px;
+  width: 170px;
   margin-bottom: 18px;
   opacity: 0;
   filter: drop-shadow(0 0 12px rgba(255, 200, 120, 0.7));
@@ -48,7 +47,6 @@ body {
   clip-path: inset(0 100% 0 0);
 }
 
-/* SCROLL */
 .scroll-indicator {
   position: absolute;
   bottom: 90px;
@@ -58,14 +56,12 @@ body {
   opacity: 0;
 }
 
-/* PANELS */
 .panel {
   height: 100vh;
   width: 100%;
   position: relative;
 }
 
-/* BACKGROUNDS */
 .haldi { background: url('./assets/haldi.jpg') center/cover no-repeat; }
 .ring { background: url('./assets/ring.jpg') center/cover no-repeat; }
 .wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
@@ -80,7 +76,6 @@ body {
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
   letter-spacing: 2px;
-  font-weight: bold;
   text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
@@ -88,7 +83,6 @@ body {
 .ring-title { color: #fff; }
 .wedding-title { color: #fff; }
 
-/* CONTENT */
 .haldi-content {
   position: absolute;
   top: 42%;
@@ -96,7 +90,7 @@ body {
   text-align: center;
 }
 
-/* POETRY */
+/* ✅ NORMAL (NO BOLD FEEL) */
 .poetry {
   font-size: 1.1rem;
   color: #333;
@@ -104,27 +98,21 @@ body {
   margin-bottom: 25px;
 }
 
-/* DATE BLOCK */
-.datetime-block {
-  margin-top: 35px;
-}
-
-.label {
+/* SAME STYLE */
+.label,
+.datetime,
+.venue {
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-/* DATE TIME */
-.datetime {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1.2rem;
   color: #000;
 }
 
-/* VENUE BLOCK */
+/* SPACING */
+.datetime-block {
+  margin-top: 40px;
+}
+
+/* VENUE */
 .venue-block {
   position: absolute;
   bottom: 12%;
@@ -132,11 +120,8 @@ body {
   text-align: center;
 }
 
-/* VENUE */
+/* ✅ UNDERLINE ONLY LINK */
 .venue {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  color: #000;
   text-decoration: underline;
 }
 

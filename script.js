@@ -35,7 +35,7 @@ function playIntroAnimation() {
   }, 5000);
 }
 
-// PETALS
+// PETALS (start from top now)
 function startPetals() {
 
   if (petalsStarted) return;
@@ -49,7 +49,7 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = Math.random() * -20 + "vh";
+    petal.style.top = "0vh"; // ✅ start from top
 
     container.appendChild(petal);
 
@@ -59,14 +59,14 @@ function startPetals() {
       duration: "random(6,10)",
       repeat: -1,
       ease: "none",
-      delay: Math.random() * 3
+      delay: Math.random() * 2
     });
 
   }
 
 }
 
-// HALDI ANIMATION SEQUENCE
+// HALDI SEQUENCE
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
@@ -80,35 +80,38 @@ ScrollTrigger.create({
 
     document.body.style.overflow = "hidden";
 
+    // TITLE
     tl.to(".haldi-title span", {
       clipPath: "inset(0 0% 0 0)",
       opacity: 1,
       duration: 2
     })
 
+    // POETRY (all together)
     .from(".haldi .poetry", {
       opacity: 0,
-      y: 30,
-      duration: 1.5
+      duration: 1.2
     })
 
+    // DATE
     .from(".datetime-block", {
       opacity: 0,
-      y: 30,
-      duration: 1.2
+      y: 20,
+      duration: 1
     })
 
+    // VENUE
     .from(".venue-block", {
       opacity: 0,
-      y: 30,
-      duration: 1.2
+      y: 20,
+      duration: 1
     });
 
     startPetals();
   }
 });
 
-// TITLES (other sections)
+// OTHER TITLES
 gsap.utils.toArray(".title span").forEach(el => {
   gsap.to(el, {
     clipPath: "inset(0 0% 0 0)",
@@ -119,17 +122,6 @@ gsap.utils.toArray(".title span").forEach(el => {
       start: "top 70%"
     }
   });
-});
-
-// POETRY
-gsap.from(".poetry", {
-  opacity: 0,
-  y: 30,
-  duration: 1.5,
-  scrollTrigger: {
-    trigger: ".poetry",
-    start: "top 80%"
-  }
 });
 
 // PIN SCROLL
