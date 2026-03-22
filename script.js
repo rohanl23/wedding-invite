@@ -94,7 +94,7 @@ lottie.loadAnimation({
   path: "./assets/sparkles.json"
 });
 
-// HALDI
+// HALDI FIX
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
@@ -103,13 +103,13 @@ ScrollTrigger.create({
       .to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".haldi .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".datetime-block", { opacity: 0, y: 20, duration: 1 })
-      .from(".venue-block", { opacity: 1, y: 20, duration: 1 });
+      .to(".haldi .venue-block", { opacity: 1, y: 0, duration: 1 });
 
     startPetals();
   }
 });
 
-// RING (FIXED FADE-IN)
+// RING (already correct)
 ScrollTrigger.create({
   trigger: ".ring",
   start: "top 80%",
@@ -118,11 +118,11 @@ ScrollTrigger.create({
       .to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".ring .datetime-block", { opacity: 0, y: 20, duration: 1 })
-      .to(".ring .venue-block", { opacity: 1, y: 0, duration: 1 }); // FIX
+      .to(".ring .venue-block", { opacity: 1, y: 0, duration: 1 });
   }
 });
 
-// WEDDING
+// WEDDING FIX
 ScrollTrigger.create({
   trigger: ".wedding",
   start: "top 80%",
@@ -130,16 +130,15 @@ ScrollTrigger.create({
 
     startConfetti();
 
-    const tl = gsap.timeline();
-
-    tl.to(".wedding-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+    gsap.timeline()
+      .to(".wedding-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
-      .from(".wedding .venue-block", { opacity: 0, y: 20, duration: 1 });
+      .to(".wedding .venue-block", { opacity: 1, y: 0, duration: 1 });
   }
 });
 
-// THANK YOU
+// THANK YOU (circular reveal + shimmer)
 ScrollTrigger.create({
   trigger: ".thankyou",
   start: "top 80%",

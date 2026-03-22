@@ -128,12 +128,13 @@ body {
   color: #000;
 }
 
+/* ✅ FIX: hide all venues initially */
 .venue-block {
   position: absolute;
   bottom: 12%;
   width: 100%;
   text-align: center;
-  opacity: 0; /* FIX: ensures fade-in works */
+  opacity: 0;
 }
 
 .ring-venue {
@@ -233,10 +234,10 @@ body {
 
 .thankyou-names {
   position: absolute;
-  top: 35%;
+  top: 50%;
   width: 100%;
   text-align: center;
-  line-height: 1.1; /* reduced spacing */
+  line-height: 1.1;
   opacity: 0;
 }
 
@@ -253,7 +254,7 @@ body {
   top: 75%;
   width: 100%;
   text-align: center;
-  line-height: 1.2; /* tighter spacing */
+  line-height: 1.2;
   opacity: 0;
 }
 
