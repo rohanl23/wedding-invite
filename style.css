@@ -45,7 +45,6 @@ body {
   clip-path: inset(0 100% 0 0);
 }
 
-/* ✅ Arrow moved slightly up */
 .scroll-indicator {
   position: absolute;
   bottom: 85px;
@@ -136,7 +135,6 @@ body {
   text-align: center;
 }
 
-/* ✅ Ring venue slightly up */
 .ring-venue {
   bottom: 18%;
 }
@@ -156,7 +154,6 @@ body {
   color: #fff;
 }
 
-/* Wedding subtitle */
 .wedding-subtitle {
   position: absolute;
   top: 40%;
@@ -170,7 +167,6 @@ body {
   white-space: nowrap;
 }
 
-/* Shimmer */
 .shimmer {
   background: linear-gradient(90deg, #fff, #ffd700, #fff);
   background-size: 200% auto;
@@ -195,7 +191,6 @@ body {
   bottom: auto;
 }
 
-/* Confetti */
 .confetti-container {
   position: absolute;
   inset: 0;
@@ -209,7 +204,6 @@ body {
   opacity: 0.8;
 }
 
-/* Petals */
 .petals {
   position: absolute;
   inset: 0;
@@ -224,9 +218,17 @@ body {
   border-radius: 50%;
 }
 
-/* ===================== */
-/* ✅ THANK YOU SECTION */
-/* ===================== */
+/* ===== THANK YOU FINAL FLOW ===== */
+
+.thankyou-logo {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  opacity: 0;
+  clip-path: circle(0% at 50% 50%);
+}
 
 .thankyou-names {
   position: absolute;
@@ -239,7 +241,7 @@ body {
 
 .thankyou-request {
   position: absolute;
-  top: 55%;
+  top: 50%;
   width: 100%;
   text-align: center;
   opacity: 0;
@@ -247,7 +249,7 @@ body {
 
 .blessings {
   position: absolute;
-  top: 70%;
+  top: 60%;
   width: 100%;
   text-align: center;
   opacity: 0;
@@ -255,20 +257,5 @@ body {
 
 .blessings-title {
   font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.thankyou-logo {
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  opacity: 0;
-  clip-path: circle(0% at 50% 50%);
-}
-
-/* Remove bold effect */
-.no-bold {
-  font-weight: normal;
+  margin-bottom: 6px;
 }
