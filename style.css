@@ -25,12 +25,12 @@ body {
   opacity: 0;
 }
 
-/* ✅ GANESH SIZE INCREASED */
+/* ✅ STRONGER GANESH GLOW */
 .ganesh {
   width: 170px;
   margin-bottom: 18px;
   opacity: 0;
-  filter: drop-shadow(0 0 12px rgba(255, 200, 120, 0.7));
+  filter: drop-shadow(0 0 20px rgba(255, 200, 120, 0.9));
 }
 
 /* SHLOKA */
@@ -47,6 +47,7 @@ body {
   clip-path: inset(0 100% 0 0);
 }
 
+/* SCROLL */
 .scroll-indicator {
   position: absolute;
   bottom: 90px;
@@ -54,6 +55,16 @@ body {
   text-align: center;
   color: #5a2e12;
   opacity: 0;
+}
+
+/* ✅ ARROW BACK */
+.arrow {
+  width: 20px;
+  height: 20px;
+  border-left: 2px solid #5a2e12;
+  border-bottom: 2px solid #5a2e12;
+  transform: rotate(-45deg);
+  margin: 10px auto;
 }
 
 .panel {
@@ -67,7 +78,7 @@ body {
 .wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
 .thankyou { background: url('./assets/thankyou.jpg') center/cover no-repeat; }
 
-/* TITLE */
+/* ✅ TITLE BOLD */
 .title {
   position: absolute;
   top: 25%;
@@ -76,6 +87,7 @@ body {
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
   letter-spacing: 2px;
+  font-weight: bold;
   text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
@@ -90,7 +102,6 @@ body {
   text-align: center;
 }
 
-/* ✅ NORMAL (NO BOLD FEEL) */
 .poetry {
   font-size: 1.1rem;
   color: #333;
@@ -98,7 +109,13 @@ body {
   margin-bottom: 25px;
 }
 
-/* SAME STYLE */
+/* ✅ BOLD DATE BLOCK */
+.datetime-block {
+  margin-top: 40px;
+  font-weight: bold;
+}
+
+/* BASE STYLE */
 .label,
 .datetime,
 .venue {
@@ -107,12 +124,11 @@ body {
   color: #000;
 }
 
-/* SPACING */
-.datetime-block {
-  margin-top: 40px;
+/* ✅ ONLY VENUE LABEL BOLD */
+.venue-block .label {
+  font-weight: bold;
 }
 
-/* VENUE */
 .venue-block {
   position: absolute;
   bottom: 12%;
@@ -120,7 +136,6 @@ body {
   text-align: center;
 }
 
-/* ✅ UNDERLINE ONLY LINK */
 .venue {
   text-decoration: underline;
 }
