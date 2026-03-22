@@ -6,37 +6,6 @@ let introDone = false;
 let petalsStarted = false;
 
 /* ========================= */
-/* ROBUST SCROLL LOCK */
-/* ========================= */
-
-let scrollLocked = true;
-
-function preventScroll(e) {
-  e.preventDefault();
-}
-
-function lockScroll() {
-  scrollLocked = true;
-
-  document.body.style.overflow = "hidden";
-
-  window.addEventListener("wheel", preventScroll, { passive: false });
-  window.addEventListener("touchmove", preventScroll, { passive: false });
-}
-
-function unlockScroll() {
-  scrollLocked = false;
-
-  document.body.style.overflow = "auto";
-
-  window.removeEventListener("wheel", preventScroll, { passive: false });
-  window.removeEventListener("touchmove", preventScroll, { passive: false });
-}
-
-/* Start locked */
-lockScroll();
-
-/* ========================= */
 /* INTRO */
 /* ========================= */
 
@@ -52,8 +21,7 @@ video.addEventListener("timeupdate", () => {
 function playIntroAnimation() {
   const tl = gsap.timeline({
     onComplete: () => {
-      unlockScroll(); // unlock AFTER intro finishes
-      initScroll();
+      initScroll(); // initialize snapping AFTER intro
     }
   });
 
@@ -135,21 +103,16 @@ lottie.loadAnimation({
 });
 
 /* ========================= */
-/* HALDI (LOCKED) */
+/* HALDI */
 /* ========================= */
 
 ScrollTrigger.create({
   trigger: ".haldi",
-  start: "top top",
+  start: "top 80%",
   onEnter: () => {
 
-    lockScroll();
-
-    const tl = gsap.timeline({
-      onComplete: () => unlockScroll()
-    });
-
-    tl.to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+    gsap.timeline()
+      .to(".haldi-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".haldi .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".haldi .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .to(".haldi .venue-block", { opacity: 1, y: 0, duration: 1 });
@@ -159,21 +122,16 @@ ScrollTrigger.create({
 });
 
 /* ========================= */
-/* RING (LOCKED) */
+/* RING */
 /* ========================= */
 
 ScrollTrigger.create({
   trigger: ".ring",
-  start: "top top",
+  start: "top 80%",
   onEnter: () => {
 
-    lockScroll();
-
-    const tl = gsap.timeline({
-      onComplete: () => unlockScroll()
-    });
-
-    tl.to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+    gsap.timeline()
+      .to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
       .from(".ring .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .to(".ring .venue-block", { opacity: 1, y: 0, duration: 1 });
@@ -181,23 +139,18 @@ ScrollTrigger.create({
 });
 
 /* ========================= */
-/* WEDDING (LOCKED) */
+/* WEDDING */
 /* ========================= */
 
 ScrollTrigger.create({
   trigger: ".wedding",
-  start: "top top",
+  start: "top 80%",
   onEnter: () => {
-
-    lockScroll();
 
     startConfetti();
 
-    const tl = gsap.timeline({
-      onComplete: () => unlockScroll()
-    });
-
-    tl.to(".wedding-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
+    gsap.timeline()
+      .to(".wedding-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .to(".wedding .venue-block", { opacity: 1, y: 0, duration: 1 });
@@ -210,7 +163,7 @@ ScrollTrigger.create({
 
 ScrollTrigger.create({
   trigger: ".thankyou",
-  start: "top top",
+  start: "top 80%",
   onEnter: () => {
 
     const tl = gsap.timeline();
@@ -253,10 +206,11 @@ gsap.utils.toArray(".title span").forEach(el => {
 });
 
 /* ========================= */
-/* PIN */
+/* SNAP SCROLL (🔥 NEW) */
 /* ========================= */
 
 function initScroll() {
+
   const panels = gsap.utils.toArray(".panel");
 
   panels.forEach(panel => {
@@ -267,5 +221,15 @@ function initScroll() {
       pin: true,
       pinSpacing: false
     });
+  });
+
+  // 🔥 SNAP WITH INERTIA
+  ScrollTrigger.create({
+    snap: {
+      snapTo: 1 / (panels.length - 1),
+      duration: { min: 0.3, max: 0.8 },
+      delay: 0.1,
+      ease: "power2.inOut"
+    }
   });
 }
