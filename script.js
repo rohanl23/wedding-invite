@@ -60,6 +60,31 @@ function startPetals() {
   }
 }
 
+// CONFETTI
+function startConfetti() {
+  const container = document.querySelector(".confetti-container");
+
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement("div");
+    c.classList.add("confetti");
+
+    c.style.left = Math.random() * 100 + "%";
+    c.style.background = ["#FFD700", "#FF69B4", "#FFFFFF"][Math.floor(Math.random()*3)];
+
+    container.appendChild(c);
+
+    gsap.to(c, {
+      y: "120vh",
+      x: "random(-100,100)",
+      rotation: 360,
+      duration: "random(4,7)",
+      repeat: -1,
+      ease: "none",
+      delay: Math.random() * 2
+    });
+  }
+}
+
 // HALDI
 ScrollTrigger.create({
   trigger: ".haldi",
@@ -80,15 +105,6 @@ ScrollTrigger.create({
   trigger: ".ring",
   start: "top 80%",
   onEnter: () => {
-
-    lottie.loadAnimation({
-      container: document.getElementById("sparkles"),
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      path: "./assets/sparkles.json"
-    });
-
     gsap.timeline()
       .to(".ring-title span", { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 2 })
       .from(".ring .poetry", { opacity: 0, y: 20, duration: 1 })
@@ -103,13 +119,7 @@ ScrollTrigger.create({
   start: "top 80%",
   onEnter: () => {
 
-    lottie.loadAnimation({
-      container: document.getElementById("confetti"),
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      path: "./assets/confetti.json"
-    });
+    startConfetti();
 
     const tl = gsap.timeline();
 
@@ -117,6 +127,26 @@ ScrollTrigger.create({
       .from(".wedding-subtitle", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .datetime-block", { opacity: 0, y: 20, duration: 1 })
       .from(".wedding .venue-block", { opacity: 0, y: 20, duration: 1 });
+  }
+});
+
+// THANK YOU
+ScrollTrigger.create({
+  trigger: ".thankyou",
+  start: "top 80%",
+  onEnter: () => {
+    gsap.timeline()
+      .from(".thankyou-poetry p", {
+        opacity: 0,
+        y: 20,
+        stagger: 0.4,
+        duration: 1
+      })
+      .from(".thankyou-line", {
+        opacity: 0,
+        y: 20,
+        duration: 1
+      });
   }
 });
 

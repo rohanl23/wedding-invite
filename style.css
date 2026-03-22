@@ -78,7 +78,7 @@ body {
 .haldi { background: url('./assets/haldi.jpg') center/cover no-repeat; }
 .ring { background: url('./assets/ring.jpg') center/cover no-repeat; }
 .wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
-.thankyou { background: url('./assets/thankyou.jpg') center/cover no-repeat; }
+.thankyou { background: #fff; }
 
 .title {
   position: absolute;
@@ -150,15 +150,7 @@ body {
   color: #fff;
 }
 
-#sparkles {
-  position: absolute;
-  inset: 0;
-  opacity: 0.5;
-  transform: scale(0.8);
-  pointer-events: none;
-}
-
-/* UPDATED SUBTITLE */
+/* Wedding subtitle */
 .wedding-subtitle {
   position: absolute;
   top: 40%;
@@ -172,7 +164,7 @@ body {
   white-space: nowrap;
 }
 
-/* SHIMMER */
+/* Shimmer */
 .shimmer {
   background: linear-gradient(90deg, #fff, #ffd700, #fff);
   background-size: 200% auto;
@@ -197,14 +189,40 @@ body {
   bottom: auto;
 }
 
-#confetti {
+/* Confetti */
+.confetti-container {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.6;
 }
 
-/* PETALS */
+.confetti {
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  opacity: 0.8;
+}
+
+/* Thank you */
+.thankyou-content {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+}
+
+.thankyou-poetry {
+  color: #000;
+}
+
+.thankyou-line {
+  margin-top: 40px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+/* Petals */
 .petals {
   position: absolute;
   inset: 0;
