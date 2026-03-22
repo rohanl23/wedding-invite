@@ -66,19 +66,13 @@ function startPetals() {
 
 }
 
-// ✅ FIXED SCROLL LOCK TIMING
+// HALDI TRIGGER (no scroll blocking now)
 ScrollTrigger.create({
   trigger: ".haldi",
-  start: "top center",
+  start: "top 80%",
   onEnter: () => {
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        document.body.style.overflow = "auto";
-      }
-    });
-
-    document.body.style.overflow = "hidden";
+    const tl = gsap.timeline();
 
     tl.to(".haldi-title span", {
       clipPath: "inset(0 0% 0 0)",

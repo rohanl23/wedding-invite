@@ -25,7 +25,7 @@ body {
   opacity: 0;
 }
 
-/* ✅ STRONGER GANESH GLOW */
+/* GANESH */
 .ganesh {
   width: 170px;
   margin-bottom: 18px;
@@ -47,24 +47,30 @@ body {
   clip-path: inset(0 100% 0 0);
 }
 
-/* SCROLL */
+/* ✅ SCROLL INDICATOR LOWER */
 .scroll-indicator {
   position: absolute;
-  bottom: 90px;
+  bottom: 50px; /* pushed lower */
   width: 100%;
   text-align: center;
   color: #5a2e12;
   opacity: 0;
 }
 
-/* ✅ ARROW BACK */
+/* ✅ SMALLER ARROW + WIGGLE */
 .arrow {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   border-left: 2px solid #5a2e12;
   border-bottom: 2px solid #5a2e12;
   transform: rotate(-45deg);
-  margin: 10px auto;
+  margin: 8px auto;
+  animation: wiggle 1.5s infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-45deg) translateY(0); }
+  50% { transform: rotate(-45deg) translateY(6px); }
 }
 
 .panel {
@@ -78,7 +84,7 @@ body {
 .wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
 .thankyou { background: url('./assets/thankyou.jpg') center/cover no-repeat; }
 
-/* ✅ TITLE BOLD */
+/* TITLE */
 .title {
   position: absolute;
   top: 25%;
@@ -109,13 +115,12 @@ body {
   margin-bottom: 25px;
 }
 
-/* ✅ BOLD DATE BLOCK */
+/* ✅ BETTER BALANCED SPACING */
 .datetime-block {
-  margin-top: 40px;
+  margin-top: 60px;
   font-weight: bold;
 }
 
-/* BASE STYLE */
 .label,
 .datetime,
 .venue {
@@ -124,16 +129,15 @@ body {
   color: #000;
 }
 
-/* ✅ ONLY VENUE LABEL BOLD */
-.venue-block .label {
-  font-weight: bold;
-}
-
 .venue-block {
   position: absolute;
   bottom: 12%;
   width: 100%;
   text-align: center;
+}
+
+.venue-block .label {
+  font-weight: bold;
 }
 
 .venue {
