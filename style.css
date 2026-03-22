@@ -77,15 +77,15 @@ body {
 .wedding { background: url('./assets/wedding.jpg') center/cover no-repeat; }
 .thankyou { background: url('./assets/thankyou.jpg') center/cover no-repeat; }
 
-/* 🔥 TITLES */
+/* TITLES */
 .title {
   position: absolute;
-  top: 25%; /* moved up */
+  top: 25%;
   width: 100%;
   text-align: center;
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
-  letter-spacing: 2px; /* 🔥 added spacing */
+  letter-spacing: 2px;
   z-index: 2;
 }
 
@@ -95,10 +95,30 @@ body {
   clip-path: inset(0 100% 0 0);
 }
 
-/* COLORS */
 .haldi-title { color: #000; }
 .ring-title { color: #fff; }
 .wedding-title { color: #fff; }
+
+/* 🔥 HALDI CONTENT */
+.haldi-content {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.event-details {
+  margin-top: 15px;
+}
+
+.event-details a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
 
 /* PETALS */
 .petals {

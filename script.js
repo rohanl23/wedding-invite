@@ -59,7 +59,7 @@ function playIntroAnimation() {
 }
 
 
-// 🌼 PETALS ONLY WHEN HALDI IS ACTIVE
+// 🌼 PETALS LOWER START (FIX)
 function startPetals() {
 
   if (petalsStarted) return;
@@ -73,12 +73,12 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "-10vh";
+    petal.style.top = "20vh"; // 🔥 starts LOWER
 
     container.appendChild(petal);
 
     gsap.to(petal, {
-      y: "110vh",
+      y: "120vh",
       x: "random(-40,40)",
       duration: "random(8,12)",
       repeat: -1,
@@ -91,7 +91,7 @@ function startPetals() {
 }
 
 
-// 🔥 TRIGGER PETALS AT HALDI ONLY
+// trigger only on haldi
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
@@ -99,7 +99,7 @@ ScrollTrigger.create({
 });
 
 
-// ✨ TITLE ANIMATION
+// ✨ TITLES
 gsap.utils.toArray(".title span").forEach(el => {
   gsap.to(el, {
     clipPath: "inset(0 0% 0 0)",
