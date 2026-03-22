@@ -4,7 +4,6 @@ const video = document.getElementById("introVideo");
 let introDone = false;
 let petalsStarted = false;
 
-
 // INTRO
 video.addEventListener("timeupdate", () => {
 
@@ -16,7 +15,6 @@ video.addEventListener("timeupdate", () => {
   }
 
 });
-
 
 function playIntroAnimation() {
 
@@ -39,8 +37,7 @@ function playIntroAnimation() {
   }, 5000);
 }
 
-
-// 🌼 PETALS FROM TOP
+// 🌼 PETALS
 function startPetals() {
 
   if (petalsStarted) return;
@@ -54,7 +51,7 @@ function startPetals() {
     petal.classList.add("petal");
 
     petal.style.left = Math.random() * 100 + "%";
-    petal.style.top = "0vh"; // 🔥 FIXED
+    petal.style.top = "0vh";
 
     container.appendChild(petal);
 
@@ -71,14 +68,12 @@ function startPetals() {
 
 }
 
-
 // trigger on haldi
 ScrollTrigger.create({
   trigger: ".haldi",
   start: "top 80%",
   onEnter: startPetals
 });
-
 
 // ✨ TITLES
 gsap.utils.toArray(".title span").forEach(el => {
@@ -93,8 +88,7 @@ gsap.utils.toArray(".title span").forEach(el => {
   });
 });
 
-
-// ✨ POETRY ANIMATION
+// ✨ POETRY
 gsap.from(".poetry", {
   opacity: 0,
   y: 30,
@@ -104,7 +98,6 @@ gsap.from(".poetry", {
     start: "top 80%"
   }
 });
-
 
 // PIN SCROLL
 function initScroll() {
